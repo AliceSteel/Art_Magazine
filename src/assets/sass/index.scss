@@ -1,0 +1,129 @@
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Albert Sans', sans-serif;
+    color: #000;
+  }
+  ul, ol {
+    list-style: none;
+  }
+  
+  a:hover, 
+  button:hover {
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  ul li a,
+  a {
+    text-decoration: none;
+  }
+   
+  img {
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1520px;
+    margin: 0 auto;
+  }
+  main {
+    padding-top: 50px;
+  }
+  
+  .logo_wrap {
+    width: 100%;
+    height: 100%;
+    max-width: 209px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: auto;
+  }
+  
+  .links {  
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    li {
+        width: 100%;
+        height:100%;
+        a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+           
+            &:hover {
+                svg path{
+                    fill: tomato;
+                    scale: 1.1;
+                }
+                color: tomato;
+                scale: 1.2;
+            }
+        }
+    }
+  }
+  h1 {
+    width: 100%;
+    height: 100%;
+    font-size: 16.8vw;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: left;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: -1rem;
+  }  
+  
+  h2 {
+    text-transform: uppercase;
+    font-size: 6vw;
+    font-weight: 700;
+    line-height: 114px;
+    margin-block-start: 0;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  h4 {
+    text-transform: uppercase;
+    font-weight: 700;
+   
+  }
+  .black_running_line {
+    background-color: #000;
+    width: 100%;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 75px;
+  }
+  .info {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .label {
+    margin-left: auto;
+    padding: 8px 12px;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  
