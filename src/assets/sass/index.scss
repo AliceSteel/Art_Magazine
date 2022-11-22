@@ -22,6 +22,7 @@
   ul li a,
   a {
     text-decoration: none;
+    color: inherit;
   }
    
   img {
@@ -126,4 +127,10 @@
     font-size: 12px;
     text-transform: uppercase;
   }
+
+  @media screen and (min-width: 1700px) {
+		h1 {
+			font-size: 287px;
+		}
+	}
   

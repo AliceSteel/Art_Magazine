@@ -1,8 +1,3 @@
-//
-//import { getFirestore } from 'firebase/firestore'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 module.exports = {
 	apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -13,5 +8,3 @@ module.exports = {
 	appId: process.env.VUE_APP_FIREBASE_APP_ID
 }
 
-// Initialize Firestore
-/*const db = getFirestore();*/

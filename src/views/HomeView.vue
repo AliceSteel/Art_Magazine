@@ -124,12 +124,56 @@
 <script>
 
 //import ArticleHeaderComp from '@/components/
+/*import { doc,
+    collection,
+	onSnapshot
+} from 'firebase/firestore'
+import { db } from '@/utilities/firebase'*/
 
 export default {
   name: 'HomeView',
   components: {
     
-  }
+  },
+    computed: {
+    articles () {
+      return this.$store.state.threads
+    },
+    podcasts () {
+      return this.$store.state.posts
+    },
+    firstArticle () {
+      return this.$store.getters.thread(this.id)
+    }
+  },
+ 
+   /*created () {
+    // fetch the articles
+   db.collection('magazine').doc(this.id).onSnapshot((doc) => {
+      this.$store.commit('setArticles', { thread })
+*/
+      // fetch the user
+      /*firebase.firestore().collection('users').doc(thread.userId).onSnapshot((doc) => {
+        const user = { ...doc.data(), id: doc.id }
+        this.$store.commit('setUser', { user })
+      })
+*/
+      // fetch the posts
+     /* thread.posts.forEach(postId => {
+        firebase.firestore().collection('posts').doc(postId).onSnapshot((doc) => {
+          const post = { ...doc.data(), id: doc.id }
+          this.$store.commit('setPost', { post })*/
+
+          // fetch the user for each post
+        /*  firebase.firestore().collection('users').doc(post.userId).onSnapshot((doc) => {
+            const user = { ...doc.data(), id: doc.id }
+            this.$store.commit('setUser', { user })
+          })
+        })
+      })
+    })
+  }*/
+
 }
 </script>
 
