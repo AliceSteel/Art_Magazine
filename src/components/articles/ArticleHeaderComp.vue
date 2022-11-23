@@ -1,19 +1,19 @@
 <template>
     <section class="container article_header">
         <div class="article_title">
-            <h2>{{ title }}</h2> 
+            <h2>{{ article.title }}</h2> 
         </div>
         <div class="article_descr">
-            <p>{{ articleDescr }}</p>
+            <p>{{ article.articleDescr }}</p>
             <div class="info">
-                <div><b>Text</b> {{ author }}</div>
-				<div><b>Date</b> {{ date }}</div>
-				<div><b>Duration</b> {{ duration }}</div>
-				<div class="label">{{ label }}</div>
+                <div><b>Text</b> {{ article.author }}</div>
+				<div><b>Date</b> {{ article.date }}</div>
+				<div><b>Duration</b> {{ article.duration }}</div>
+				<div class="label">{{ article.label }}</div>
             </div>
         </div>
         <div class="article_img">
-            <img :src="require(picUrl)" alt='article'/>
+            <img :src="article.picUrl" alt='article'/>
         </div>
     </section>
 </template>
@@ -22,13 +22,10 @@
     export default {
         name: 'ArticleHeaderComp',
         props: {
-            title: String,
-            articleDescr: String,
-            author: String,
-            date: String,
-            duration: String,
-            label: String,
-            picUrl: String
+           article: {
+            required: true,
+            type: Object
+           }
         }
     }
 </script>

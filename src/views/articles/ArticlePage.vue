@@ -1,23 +1,20 @@
 <template>
-                  
-        <div v-if="article">
-            {{ article.title }}
-        </div>
+    <main v-if="asyncDataStatus_ready">
+        <ArticleHeaderComp :article='article'/>
         
 
         <div class="article_content_wrap">
             <div class="article_author">
                 <div class="article_author_header">
-                   <!-- <div class="article_author_pic">
-                        {article &&
-                        <img src={article.authorPic} alt="author"/> }
+                    <div class="article_author_pic">
+                        <img :src='article.authorPic' alt="author"/>
                     </div>
-                    <h3>{article.author}</h3>-->
+                    <h3>{{article.author}}</h3>-->
                 </div>
         
                 <div class="article_author_info_wrap">
-                       <!-- <div class="article_author_info"><b>Date </b> {article.date}</div>
-                        <div class="article_author_info"><b>Read </b> {article.duration}</div>-->
+                        <div class="article_author_info"><b>Date </b> {{article.date}}</div>
+                        <div class="article_author_info"><b>Read </b> {{article.duration}}</div>
                         <div class="article_author_info">
                                 <b>Share</b> 
                                 <span>
@@ -37,30 +34,33 @@
             </div>
 
             <div class="article_text">
-                <!--<p><i> { article.articleTextP1 } </i></p>
-                <p> { article.articleTextP2 } </p>
-                <p> { article.articleTextP3 } </p>
+                <p><i> {{ article.articleTextP1 }} </i></p>
+                <p> {{ article.articleTextP2 }} </p>
+                <p> {{ article.articleTextP3 }} </p>
 
                 <div class="quote">
-                {`"${article.quote}"`}
-                    <sub> { article.quoteAuthor } </sub>
+                {{ article.quote }}
+                    <sub> {{ article.quoteAuthor }} </sub>
                 </div>
 
-                <p><i> { article.articleTextP4 } </i></p>
+                <p><i> {{ article.articleTextP4 }} </i></p>
 
-            { article.articleTextP5  && <p> { article.articleTextP5 } </p>}
-            { article.articleTextP6  && <p> { article.articleTextP6 } </p>}-->
+                <p v-if="article.articleTextP5"> {{ article.articleTextP5 }} </p>
+                <p v-if="article.articleTextP6"> {{ article.articleTextP6 }} </p>
             </div>
         </div>   
+    </main>                    
 </template>
 
 <script>
-import { db } from '@/main'
-import { getDocs, collection } from 'firebase/firestore'
-import { mapGetters } from 'vuex'
+import asynDataStatus from '@/mixins/asyncDataStatus'
+import ArticleHeaderComp from '@/components/articles/ArticleHeaderComp.vue'
+import { mapActions } from 'vuex'
 
 export default {
    name: 'ArticlePage',
+   mixins: [asynDataStatus],
+   components: { ArticleHeaderComp },
     /*props: {
       id: {
         required: true,
@@ -72,29 +72,17 @@ export default {
             id: 'm1'
         }
     },
-
     computed: {
-      articles () {
-        return this.$store.state.magazine
-      },
-      
       article () {
         return this.$store.getters.article(this.id)
       }
     },
-
     methods: {
-      ...mapGetters('magazine', ['get article'])
+        ...mapActions(['fetchAllMagazine'])
     },
-
     async created () {
-        const magazine = await getDocs(collection(db, "magazine"))
-        magazine.forEach((doc) => {
-            const article = {...doc.data(), id: doc.id}
-            this.$store.commit('setMagazine', { article })
-        });
-        console.log(this.$store.state.magazine);
-
+        await this.fetchAllMagazine()
+        this.asyncDataStatus_fetched()
     }
 }
 </script>

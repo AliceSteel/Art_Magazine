@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { findById } from "@/helpers";
-//import { db } from '@/utilities/firebase'
+import { db } from '@/main'
+import { getDocs, collection } from 'firebase/firestore'
 
 export default createStore({
 	state: {
@@ -49,15 +50,49 @@ export default createStore({
 			});
 		},*/
 
-		fetchItems({ dispatch }, { ids, resource, emoji }) {
-			return Promise.all(
-				ids.map((id) => dispatch("fetchItem", { id, resource, emoji }))
-			);
+		
+		async fetchAllMagazine ({ commit }) {
+			const magazine = await getDocs(collection(db, "magazine"))
+			magazine.forEach((doc) => {
+				const article = {...doc.data(), id: doc.id}
+				commit('setMagazine', { article })
+			})
+			return magazine
 		},
+			
+		async fetchAllPodcasts ({ commit }) {
+			const podcasts = await getDocs(collection(db, "podcasts"))
+			podcasts.forEach((doc) => {
+				const podcast = {...doc.data(), id: doc.id}
+				commit('setPodcasts', { podcast })
+			})
+			return podcasts
+		},
+		async fetchAllAuthors ({ commit }) {
+			const authors = await getDocs(collection(db, "authors"))
+			authors.forEach((doc) => {
+				const author = {...doc.data(), id: doc.id}
+				commit('setAuthors', { author })
+			})
+			return authors
+		}
 	},
 	mutations: {
 		setMagazine (state, { article }){
 			state.magazine.push(article)
+		},
+		setPodcasts ( state, { podcast }) {
+			state.podcasts.push(podcast)
+		},
+		setAuthors ( state, { author }) {
+			state.authors.push(author)
 		}
+
+		/*setCollection (state, { resource, item }) {
+			console.log(state[resource]);
+			state[resource].push(item)
+		}*/
 	}
-});
+})
+
+
