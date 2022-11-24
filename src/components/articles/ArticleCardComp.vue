@@ -1,7 +1,7 @@
 <template>
    <div class="article">
 		<div class="article_pic">
-			<img :src='article.picUrl' alt='article.title' />
+			<img :src='article.picUrl' :alt='article.title' />
 		</div>
 		<div class="article_content">
 			<div class="descr">

@@ -7,15 +7,30 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/articles',
-    name: 'articles',
-    component: () => import('../views/articles/ArticlesPage.vue')
+    path: '/magazine',
+    name: 'magazine',
+    component: () => import('../views/articles/MagazinePage.vue')
   },
   {
-		path: '/articles/:name',
-		name: 'ArticleN',
+		path: '/magazine/:id',
+		name: 'ArticlePage',
 		component: () => import('../views/articles/ArticlePage.vue')
 	},
+  {
+    path: '/podcasts',
+    name: 'podcasts',
+    component: () => import('../views/podcasts/PodcastsPage.vue')
+  },
+  {
+    path: '/podcasts/:id',
+    name: 'podcast',
+    component: () => import('../views/podcasts/PodcastPage.vue')
+  },
+  {
+    path: '/authors',
+    name: 'authors',
+    component: () => import('../views/authors/AuthorsPage.vue')
+  },
 ]
 
 const router = createRouter({

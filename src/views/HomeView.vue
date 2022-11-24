@@ -7,12 +7,12 @@
                 <b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit +++
             </div>
         </div>
-        <ArticleHeaderComp :article='first6Articles[1]' />
+        <ArticleHeaderComp :article='last6Articles.pop()' />
 
         <section class="container homepage_articles">
-            <div class="articles" v-if="first6Articles">
+            <div class="articles" v-if="last6Articles">
                 <ArticleCardComp 
-                    v-for='article in first6Articles'
+                    v-for='article in last6Articles'
                     :key='article.title'
                     :article="article"
                 />
@@ -51,19 +51,19 @@
         <section class="container">
             <div class="section_title_wrap">
                 <h2>podcast</h2>
-                <span class="all_others_link">
+                <router-link to='/podcasts' class="all_others_link">
                     <i>ALL EPISODES</i>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.172 11L10.808 5.636L12.222 4.222L20 12L12.222 19.778L10.808 18.364L16.172 13H4V11H16.172Z"
                             fill="black" />
                     </svg>
-                </span>
+                </router-link>
             </div>
 
             <div class="latest_3_podcast">
                 <PodcastCardComp 
-                    v-for='podcast in first3Podcasts'
+                    v-for='podcast in last3Podcasts'
                     :key='podcast.id'
                     :podcast="podcast"
                 />
@@ -74,14 +74,14 @@
         <section class="container">
             <div class="section_title_wrap">
                 <h2>Authors</h2>
-                <span class="all_others_link">
+                <router-link to='/authors' class="all_others_link">
                     <i>ALL AUTHORS</i>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.172 11L10.808 5.636L12.222 4.222L20 12L12.222 19.778L10.808 18.364L16.172 13H4V11H16.172Z"
                             fill="black" />
                     </svg>
-                </span>
+                </router-link>
             </div>
             <div class="authors_wrap">
                 <AuthorCardComp 
@@ -112,27 +112,29 @@ export default {
         AuthorCardComp
     },
     computed: {
-        first6Articles () {
-            return this.$store.state.magazine.slice(0, 6)
+        last6Articles () {
+            let articles = this.$store.state.magazine
+            return articles.slice(0 -6)
         },
       
-        first3Podcasts () {
-            return this.$store.state.podcasts.slice(0, 3)
+        last3Podcasts () {
+            let podcasts = this.$store.state.podcasts
+            return podcasts.slice(0, -3)
         },
         first6Authors () {
             return this.$store.state.authors.slice(0, 6)
         }
     },
     methods: {
-        ...mapActions(['fetchAllMagazine']),
-        ...mapActions(['fetchAllPodcasts']),
-        ...mapActions(['fetchAllAuthors'])
+        ...mapActions(['fetchAllCollection'])
     },
  
     async created () {
-        await this.fetchAllMagazine()
-        await this.fetchAllPodcasts()
-        await this.fetchAllAuthors()
+        if(this.$store.state.magazine.length == []){
+            await this.fetchAllCollection({resource: 'magazine'})
+            await this.fetchAllCollection({resource: 'podcasts'})
+            await this.fetchAllCollection({resource: 'authors'})
+        }
         this.asyncDataStatus_fetched()
     }
 }

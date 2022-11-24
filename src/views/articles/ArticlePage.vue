@@ -2,7 +2,6 @@
     <main v-if="asyncDataStatus_ready">
         <ArticleHeaderComp :article='article'/>
         
-
         <div class="article_content_wrap">
             <div class="article_author">
                 <div class="article_author_header">
@@ -58,32 +57,29 @@ import ArticleHeaderComp from '@/components/articles/ArticleHeaderComp.vue'
 import { mapActions } from 'vuex'
 
 export default {
-   name: 'ArticlePage',
-   mixins: [asynDataStatus],
-   components: { ArticleHeaderComp },
-    /*props: {
-      id: {
-        required: true,
-        type: String
-      }
-    },*/
-    data () {
-        return {
-            id: 'm1'
-        }
-    },
+    name: 'ArticlePage',
+    mixins: [asynDataStatus],
+    components: { ArticleHeaderComp },
+
     computed: {
-      article () {
-        return this.$store.getters.article(this.id)
-      }
-    },
-    methods: {
-        ...mapActions(['fetchAllMagazine'])
-    },
-    async created () {
-        await this.fetchAllMagazine()
-        this.asyncDataStatus_fetched()
-    }
+        id () {
+            return this.$route.params.id
+        },
+        article () {
+            return this.$store.getters.article(this.id)
+        }
+        },
+        methods: {
+            ...mapActions(['fetchAllCollection'])
+        },
+        async created () {
+            if(this.$store.state.magazine === []){
+                await this.fetchAllCollection({resource: 'magazine'})
+                this.asyncDataStatus_fetched()
+            }
+            else 
+            this.asyncDataStatus_fetched() 
+        }
 }
 </script>
 
