@@ -156,14 +156,7 @@ section.homepage_articles {
     flex-direction: column;
 }
 
-.all_others_link {
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 50px 0;
-}
+
     
 .print_magazine {
     flex-basis: 25%;
