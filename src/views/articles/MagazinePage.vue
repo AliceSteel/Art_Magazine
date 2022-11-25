@@ -1,5 +1,5 @@
 <template>
-	<main class="container">
+	<main class="container" v-if="asyncDataStatus_ready">
 		<h1>magazine</h1>
 		<div class="categories">
 			<h4>categories</h4>
@@ -39,7 +39,7 @@ export default {
         ...mapActions(['fetchAllCollection'])
     },
 	async created () {
-        if(this.$store.state.magazine.length == []){
+        if(this.$store.state.magazine.length === 0){
             await this.fetchAllCollection({resource: 'magazine'})
 		}
 		this.asyncDataStatus_fetched()

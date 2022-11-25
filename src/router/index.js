@@ -23,7 +23,7 @@ const routes = [
   },
   {
     path: '/podcasts/:id',
-    name: 'podcast',
+    name: 'PodcastPage',
     component: () => import('../views/podcasts/PodcastPage.vue')
   },
   {
