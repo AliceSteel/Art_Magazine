@@ -1,7 +1,10 @@
 <template>
-   <div class="article">
+	<router-link
+		:to="{ name: 'ArticlePage', params: { id: article.id } }"
+		class="article"
+	>
 		<div class="article_pic">
-			<img :src='article.picUrl' :alt='article.title' />
+			<img :src="article.picUrl" :alt="article.title" />
 		</div>
 		<div class="article_content">
 			<div class="descr">
@@ -15,52 +18,51 @@
 				<div class="label">{{ article.label }}</div>
 			</div>
 		</div>
-	</div>
+	</router-link>
 </template>
 
 <script>
-	export default {
-		name: 'ArticleCardComp',
-		props: {
-			article: {
-				required: true,
-				type: Object
-			}
-		}
-	}
+export default {
+	name: "ArticleCardComp",
+	props: {
+		article: {
+			required: true,
+			type: Object,
+		},
+	},
+};
 </script>
 
 <style lang='scss' scoped>
-	.article {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 240px 1fr;
-		padding: 48px 0;
-		border-top: 1px solid #000;
+.article {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 240px 1fr;
+	padding: 48px 0;
+	border-top: 1px solid #000;
 
-		&:first-child {
-			border-top: none;
-		}
-
-		&_pic {
-			width: 240px;
-			height: 240px;
-			vertical-align: top;
-			img {
-				height: 100%;
-			}
-		}
-		&_content {
-			padding-left: 48px;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: space-between;
-		}
+	&:first-child {
+		border-top: none;
 	}
 
-	.descr h3 {
-		padding-bottom: 12px;
+	&_pic {
+		width: 240px;
+		height: 240px;
+		vertical-align: top;
+		img {
+			height: 100%;
+		}
 	}
+	&_content {
+		padding-left: 48px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+}
 
+.descr h3 {
+	padding-bottom: 12px;
+}
 </style>

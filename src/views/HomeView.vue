@@ -17,7 +17,7 @@
                     :article="article"
                 />
 
-                <router-link to='/articles' class="all_others_link">
+                <router-link to='/magazine' class="all_others_link">
                     <i>ALL ARTICLES</i>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -67,7 +67,6 @@
                     :key='podcast.id'
                     :podcast="podcast"
                 />
- 
 		</div>
         </section>
 
@@ -114,12 +113,14 @@ export default {
     computed: {
         last6Articles () {
             let articles = this.$store.state.magazine
-            return articles.slice(0 -6)
+            let last6Articles = articles.reverse().slice(0, 6)
+            return last6Articles
         },
       
         last3Podcasts () {
             let podcasts = this.$store.state.podcasts
-            return podcasts.slice(0, -3)
+            let last3podcasts = podcasts.reverse().slice(0, 3)
+            return last3podcasts
         },
         first6Authors () {
             return this.$store.state.authors.slice(0, 6)

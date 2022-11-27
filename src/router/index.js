@@ -31,6 +31,11 @@ const routes = [
     name: 'authors',
     component: () => import('../views/authors/AuthorsPage.vue')
   },
+  {
+    path: '/authors/:id',
+    name: 'AuthorPage',
+    component: () => import('../views/authors/AuthorPage.vue')
+  },
 ]
 
 const router = createRouter({

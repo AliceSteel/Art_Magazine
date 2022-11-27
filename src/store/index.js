@@ -23,6 +23,12 @@ export default createStore({
 				return { ...podcast };
 			};
 		},
+		author: (state) => {
+			return (id) => {
+				const author = findById(state.authors, id);
+				return { ...author};
+			};
+		}
 	},
 	actions: {
 		

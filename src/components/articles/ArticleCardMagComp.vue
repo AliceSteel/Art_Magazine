@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="{name: 'ArticlePage', params: { id: article.id }}" class="article_card">
+	<router-link :to="{name: 'ArticlePage', params: { id: article.id } }" class="article_card">
 		<div class="article_date">
 			<span>{{ article.date }}</span>
 			<div class="label">{{ article.label }}</div>
@@ -31,7 +31,7 @@ export default {
 <style lang='scss' scoped>
 .article_card {
 	width: 100%;
-	height: max-content;
+	height: 100%;
 	padding: 3rem;
 	display: flex;
 	flex-direction: column;

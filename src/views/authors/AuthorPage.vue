@@ -1,40 +1,18 @@
 <template>
-	<main v-if="asyncDataStatus_ready">
-		<ContentPagesHeader slug='/podcasts' title='PODCAST' />
-		<div class="podcast_content_wrap">
-			<div class="podcast_header">
-				<div class="podcast_header_pic_container">
-					<div class="podcast_header_pic">
-						<img :src="podcast.imgUrl" alt="podcast" />
-					</div>
-					<div class="podcast_header_info">
-						<b class="listenOn">Listen On</b>
-						<span>
-							<svg
-								viewBox="0 0 32 32"
-								class="icon"
-								title="Spotify"
-							>
-								<path
-									d="M16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.119-16-16-16zM23.363 23.119c-0.319 0.481-0.881 0.637-1.363 0.319-3.762-2.319-8.481-2.8-14.081-1.519-0.563 0.163-1.037-0.238-1.2-0.719-0.162-0.563 0.237-1.038 0.719-1.2 6.081-1.363 11.363-0.8 15.519 1.762 0.563 0.238 0.644 0.875 0.406 1.356zM25.281 18.719c-0.4 0.563-1.119 0.8-1.681 0.4-4.319-2.637-10.881-3.438-15.919-1.837-0.638 0.163-1.362-0.163-1.519-0.8-0.162-0.637 0.162-1.363 0.8-1.519 5.838-1.762 13.037-0.881 18 2.163 0.475 0.238 0.719 1.038 0.319 1.594zM25.438 14.238c-5.119-3.037-13.681-3.363-18.563-1.838-0.8 0.238-1.6-0.238-1.838-0.963-0.237-0.8 0.237-1.6 0.963-1.838 5.681-1.681 15.038-1.363 20.962 2.162 0.719 0.4 0.962 1.363 0.563 2.081-0.406 0.556-1.363 0.794-2.087 0.394z"
-								></path>
-							</svg>
-							<svg class="icon" viewBox="0 0 32 32" title="SoundCloud">
-								<path d="M27.874 16.069c-0.565 0-1.105 0.11-1.596 0.308-0.328-3.574-3.447-6.377-7.25-6.377-0.931 0-1.834 0.176-2.635 0.474-0.311 0.116-0.393 0.235-0.393 0.466v12.585c0 0.243 0.195 0.445 0.441 0.469 0.011 0.001 11.36 0.007 11.434 0.007 2.278 0 4.125-1.776 4.125-3.965s-1.848-3.966-4.126-3.966zM12.5 24h1l0.5-7.007-0.5-6.993h-1l-0.5 6.993zM9.5 24h-1l-0.5-5.086 0.5-4.914h1l0.5 5zM4.5 24h1l0.5-4-0.5-4h-1l-0.5 4zM0.5 22h1l0.5-2-0.5-2h-1l-0.5 2z"></path>
-							</svg>
-						</span>
-					</div>
+<main v-if="asyncDataStatus_ready">
+		<ContentPagesHeader slug='/authors' title='AUTHOR' />
+		<div class="author_content_wrap">
+			<div class="author_header">
+				<div class="author_header_pic_container">
+					<img :src="author.picUrl" alt="author" />
 				</div>
 
-				<div class="podcast_header_info_wrap">
-					<div class="podcast_header_info">
-						<b>Date </b> {{ podcast.date }}
+				<div class="author_header_info_wrap">
+					<div class="author_header_info">
+						<b>Residence </b> {{ author.city }}
 					</div>
-					<div class="podcast_header_info">
-						<b>Duration </b> {{ podcast.duration }}
-					</div>
-					<div class="podcast_header_info">
-						<b>Share</b>
+					<div class="author_header_info">
+						<b>Follow</b>
 						<span>
 							<svg 
 								class="icon"
@@ -64,14 +42,12 @@
 				</div>
 			</div>
 
-			<div class="podcast_text">
-				<h4>episode {{ displayId }}</h4>
-				<h2>{{ podcast.title }}</h2>
+			<div class="author_text">
+				<h2>{{ author.name }}</h2>
 				<p>
-					<i> {{ podcast.textP1 }} </i>
+					<i> {{ author.aboutIntro }} </i>
 				</p>
-				<p>{{ podcast.textP2 }}</p>
-				<p>{{ podcast.textP3 }}</p>
+				<p>{{ author.aboutMain }}</p>
 			</div>
 		</div>
 	</main>
@@ -80,29 +56,26 @@
 <script>
 import asynDataStatus from "@/mixins/asyncDataStatus"
 import { mapActions } from "vuex"
-import ContentPagesHeader from "@/components/ContentPagesHeader.vue"
+import ContentPagesHeader from '@/components/ContentPagesHeader.vue'
 
 export default {
-	name: "PodcastPage",
+	name: "AuthorPage",
 	mixins: [asynDataStatus],
 	components: { ContentPagesHeader },
 	computed: {
 		id() {
 			return this.$route.params.id;
 		},
-		podcast() {
-			return this.$store.getters.podcast(this.id);
-		},
-		displayId() {
-			return this.id.replace("p", "0");
-		},
+		author() {
+			return this.$store.getters.author(this.id);
+		}
 	},
 	methods: {
 		...mapActions(["fetchAllCollection"]),
 	},
 	async created() {
-		if (this.$store.state.podcasts.length === 0) {
-			await this.fetchAllCollection({ resource: "podcasts" });
+		if (this.$store.state.authors.length === 0) {
+			await this.fetchAllCollection({ resource: "authors" });
 			this.asyncDataStatus_fetched();
 		} else this.asyncDataStatus_fetched();
 	},
@@ -114,7 +87,7 @@ export default {
 h2 {
 	padding: 1rem 0 2rem;
 }
-.podcast_content_wrap {
+.author_content_wrap {
 	width: 100%;
 	max-width: 1000px;
 	margin: 0 auto;
@@ -123,7 +96,7 @@ h2 {
 	justify-content: space-between;
 	gap: 50px;
 }
-.podcast_header {
+.author_header {
 	height: fit-content;
 	flex-basis: 30%;
 	flex-grow: 1;
@@ -134,14 +107,8 @@ h2 {
 	&_pic_container {
 		width: 100%;
 		max-width: 350px;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		padding-bottom: 1rem;
+		padding-bottom: 2rem;
 		border-bottom: 1px solid #000;
-	}
-	&_pic {
-		width: 100%;
 	}
 	&_info_wrap {
 		width: 100%;
@@ -155,10 +122,8 @@ h2 {
 		padding-bottom: 1rem;
 	}
 }
-b.listenOn {
-	font-size: 1.5rem;
-}
-.podcast_text {
+
+.author_text {
 	flex-basis: 60%;
 	flex-grow: 1;
 	padding-bottom: 50px;
