@@ -7,7 +7,7 @@
                 <b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit +++
             </div>
         </div>
-        <ArticleHeaderComp :article='last6Articles.pop()' />
+        <ArticleHeaderComp :article='last6Articles[1]' />
 
         <section class="container homepage_articles">
             <div class="articles" v-if="last6Articles">
@@ -61,7 +61,7 @@
                 </router-link>
             </div>
 
-            <div class="latest_3_podcast">
+            <div class="latest_3_items">
                 <PodcastCardComp 
                     v-for='podcast in last3Podcasts'
                     :key='podcast.id'
@@ -113,13 +113,13 @@ export default {
     computed: {
         last6Articles () {
             let articles = this.$store.state.magazine
-            let last6Articles = articles.reverse().slice(0, 6)
+            const last6Articles = articles.reverse().slice(0, 6)
             return last6Articles
         },
       
         last3Podcasts () {
             let podcasts = this.$store.state.podcasts
-            let last3podcasts = podcasts.reverse().slice(0, 3)
+            const last3podcasts = podcasts.reverse().slice(0, 3)
             return last3podcasts
         },
         first6Authors () {
@@ -133,7 +133,11 @@ export default {
     async created () {
         if(this.$store.state.magazine.length == []){
             await this.fetchAllCollection({resource: 'magazine'})
+        }
+        if(this.$store.state.podcasts.length == []){
             await this.fetchAllCollection({resource: 'podcasts'})
+        }
+        if(this.$store.state.authors.length == []){
             await this.fetchAllCollection({resource: 'authors'})
         }
         this.asyncDataStatus_fetched()
@@ -156,9 +160,7 @@ section.homepage_articles {
     display: flex;
     flex-direction: column;
 }
-
-
-    
+   
 .print_magazine {
     flex-basis: 25%;
     max-width: 370px;
@@ -208,20 +210,6 @@ section.homepage_articles {
         font-size: 1rem;
         padding: 15px;
     }
-}
-/* ============PODCASTS==========================0 */
-.section_title_wrap {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 50px 0;
-    border-top: 1px solid #000;
-}
-.latest_3_podcast {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin-bottom: 12vw;
 }
 
 /* ===========AUTHORS====================================== */

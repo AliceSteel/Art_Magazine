@@ -50,6 +50,19 @@
 				<p>{{ author.aboutMain }}</p>
 			</div>
 		</div>
+		<section class="container">
+            <div class="section_title_wrap">
+                <h2>Latest articles by {{ author.name }}</h2>
+            </div>
+
+            <div class="container latest_articles" v-if="getLatestPosts">
+                <ArticleCardComp 
+                    v-for='post in getLatestPosts'
+                    :key='post.id'
+                    :article="post"
+                />
+		</div>
+        </section>  
 	</main>
 </template>
 
@@ -57,27 +70,34 @@
 import asynDataStatus from "@/mixins/asyncDataStatus"
 import { mapActions } from "vuex"
 import ContentPagesHeader from '@/components/ContentPagesHeader.vue'
+import ArticleCardComp from '@/components/articles/ArticleCardComp.vue'
 
 export default {
 	name: "AuthorPage",
 	mixins: [asynDataStatus],
-	components: { ContentPagesHeader },
+	components: { ContentPagesHeader, ArticleCardComp },
+	
 	computed: {
 		id() {
 			return this.$route.params.id;
 		},
 		author() {
-			return this.$store.getters.author(this.id);
+			return this.$store.getters.findAuthor(this.id);
+		},
+		getLatestPosts (){
+			return this.$store.state.postsByAuthor
 		}
 	},
 	methods: {
 		...mapActions(["fetchAllCollection"]),
+		...mapActions(["fetchAuthorPosts"]),
 	},
 	async created() {
 		if (this.$store.state.authors.length === 0) {
-			await this.fetchAllCollection({ resource: "authors" });
-			this.asyncDataStatus_fetched();
-		} else this.asyncDataStatus_fetched();
+			await this.fetchAllCollection({ resource: "authors"});
+		} 
+		await this.fetchAuthorPosts({ authorName: this.author.name })
+		this.asyncDataStatus_fetched();
 	},
 };
 </script>
@@ -145,10 +165,13 @@ h2 {
 	stroke-width: 0;
 	stroke: #000;
 	fill: #000;
-	margin-left: 1rem;
-	
+	margin-left: 1rem;	
 }
 
-	
+.latest_articles {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}	
 
 </style>

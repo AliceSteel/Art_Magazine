@@ -137,6 +137,21 @@
     text-transform: uppercase;
   }
 
+  .section_title_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0;
+    border-top: 1px solid #000;
+  }
+  .latest_3_items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-bottom: 12vw;
+  }
+
+
   @media screen and (min-width: 1700px) {
 		h1 {
 			font-size: 287px;

@@ -47,33 +47,59 @@
                 <p v-if="article.articleTextP5"> {{ article.articleTextP5 }} </p>
                 <p v-if="article.articleTextP6"> {{ article.articleTextP6 }} </p>
             </div>
-        </div>   
+        </div> 
+        <section class="container">
+            <div class="section_title_wrap">
+                <h2>Latest posts</h2>
+                <router-link to='/magazine' class="all_others_link">
+                    <i>SEE ALL</i>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.172 11L10.808 5.636L12.222 4.222L20 12L12.222 19.778L10.808 18.364L16.172 13H4V11H16.172Z"
+                            fill="black" />
+                    </svg>
+                </router-link>
+            </div>
+
+            <div class="latest_3_items">
+                <ArticleCardMagComp 
+                    v-for='post in last3Posts'
+                    :key='post.id'
+                    :article="post"
+                />
+		</div>
+        </section>  
     </main>                    
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import asynDataStatus from '@/mixins/asyncDataStatus'
 import ArticleHeaderComp from '@/components/articles/ArticleHeaderComp.vue'
-import { mapActions } from 'vuex'
+import ArticleCardMagComp from '@/components/articles/ArticleCardMagComp.vue'
 
 export default {
     name: 'ArticlePage',
     mixins: [asynDataStatus],
-    components: { ArticleHeaderComp },
-
+    components: { ArticleHeaderComp, ArticleCardMagComp },
     computed: {
         id () {
             return this.$route.params.id
         },
         article () {
             return this.$store.getters.article(this.id)
-        }
+        },
+        last3Posts () {
+            let articles = this.$store.state.magazine
+            const last3Articles = articles.reverse().slice(0, 3)
+            return last3Articles
+        },
         },
         methods: {
             ...mapActions(['fetchAllCollection'])
         },
         async created () {
-            if(this.$store.state.magazine === []){
+            if(this.$store.state.magazine == []){
                 await this.fetchAllCollection({resource: 'magazine'})
                 this.asyncDataStatus_fetched()
             }
