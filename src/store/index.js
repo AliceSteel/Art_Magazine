@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import { findById } from "@/helpers";
 import { db } from '@/main'
-import { getDocs, collection, query, orderBy, where, limit } from 'firebase/firestore'
+import { getDocs, collection, query, where,/*limit */} from 'firebase/firestore'
 
 export default createStore({
 	state: {
@@ -43,14 +43,13 @@ export default createStore({
 			return docs
 		},
 		async fetchAuthorPosts ({ commit/*, state*/ }, { authorName } ) {
-			
-			const postsQuery = query(collection(db, 'magazine'), 
-				where('author', '==', authorName),
-				orderBy('id', 'desc'),
-				limit(2)
+			const postsQuery = query(collection(db, "magazine"), 
+				where("author", "==", authorName),
+				/*limit(2)*/
 				)
 	
-			let posts = await getDocs(postsQuery)
+			const posts = await getDocs(postsQuery)
+			console.log(posts);
 			posts.forEach((doc) => {
 				const item = {...doc.data(), id: doc.id}
 				commit('setCollection', { item, resource: 'postsByAuthor'})
@@ -59,7 +58,6 @@ export default createStore({
 	},
 	mutations: {
 		setCollection (state, { item, resource }){
-			console.log(item);
 			state[resource].push(item)
 		},
 		setItem (state,  { item, resource }) {
