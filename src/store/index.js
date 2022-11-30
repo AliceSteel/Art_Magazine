@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import { findById } from "@/helpers";
 import { db } from '@/main'
-import { getDocs, getDoc, collection, query, where, limit, startAfter, doc} from 'firebase/firestore'
+import { getDocs, getDoc, collection, query, where, limit, startAfter, doc, getCountFromServer } from 'firebase/firestore'
 
 export default createStore({
 	state: {
@@ -9,7 +9,8 @@ export default createStore({
 		podcasts: [],
 		authors: [],
 		author: {},
-		postsByAuthor: []
+		postsByAuthor: [],
+		collectionCount: 0
 	},
 	getters: {
 		article: (state) => {
@@ -41,6 +42,31 @@ export default createStore({
 				commit('setCollection', { item, resource })
 			})
 			return docs
+		},
+		async fetchCollectionByScroll ({ commit/*, state*/ }, { resource, startAftr = null }) {
+			let postsQuery = null
+			const commonQuery = [
+				collection(db, resource), 
+				limit(6)
+			];
+			if(startAftr){
+				const postRef = doc(db, resource, startAftr.id)
+				const lastPost = await getDoc(postRef)
+				postsQuery = query(...commonQuery, startAfter(lastPost));
+			}else {
+				postsQuery = query(...commonQuery);
+			}
+			const posts = await getDocs(postsQuery)
+			posts.forEach((doc) => {
+				const item = {...doc.data(), id: doc.id}
+				commit('setCollection', { item, resource})
+			})
+		},
+		async fetchFirestoreCollectionCount ({commit}, { resource }){
+			const counted = await getCountFromServer(collection(db, `${resource}`))
+			const item = counted.data().count;
+			console.log(item);
+			commit('setItem', {item, resource: 'collectionCount'})
 		},
 		async fetchAuthorPosts ({ commit/*, state*/ }, { authorName, startAftr = null }) {
 			let postsQuery = null

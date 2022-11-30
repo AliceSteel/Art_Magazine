@@ -10,8 +10,8 @@
 		<h3>{{ article.title }}</h3>
 		<p>{{ article.articleDescr }}</p>
 		<div class="info">
-			<div><b>Text</b>{{ article.author }}</div>
-			<div><b>Duration</b>{{ article.duration }}</div>
+			<div><b>Text: </b>{{ article.author }}</div>
+			<div><b>Duration </b>{{ article.duration }}</div>
 		</div>
 	</router-link>
 </template>

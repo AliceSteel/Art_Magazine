@@ -11,10 +11,15 @@
 
 		<div class="articles_wrap">
 			<ArticleCardMagComp 
-				v-for='article in articles'
+				v-for='article in getLatestPosts'
 				:key='article.id'
 				:article='article'
 			/>
+			<AppInfiniteScroll
+					v-if="this.$store.state.magazine.length < count"
+					@load="fetchLatestPosts"
+					:done="getLatestPosts.length === count"
+				/>
 		</div>
 	</main>
 </template>
@@ -31,16 +36,32 @@ export default {
         ArticleCardMagComp
     },
 	computed: {
-		articles () {
+		getLatestPosts () {
 			return this.$store.state.magazine
+		},
+		lastPostFetched() {
+			if (this.getLatestPosts.length === 0) return null;
+			return this.getLatestPosts[this.getLatestPosts.length - 1];
+		},
+		count(){
+			return this.$store.state.collectionCount
 		}
 	},
 	methods: {
-        ...mapActions(['fetchAllCollection'])
+        ...mapActions(['fetchCollectionByScroll']),
+		...mapActions(['fetchFirestoreCollectionCount']),
+		fetchLatestPosts() {
+			return this.fetchCollectionByScroll({
+				resource: 'magazine',
+				startAftr: this.lastPostFetched,
+			});
+		},
     },
 	async created () {
         if(this.$store.state.magazine.length === 0){
-            await this.fetchAllCollection({resource: 'magazine'})
+			await this.fetchFirestoreCollectionCount({resource: 'magazine'})
+			console.log(this.$store.state.collectionCount);
+            await this.fetchLatestPosts({resource: 'magazine'})
 		}
 		this.asyncDataStatus_fetched()
 	}
