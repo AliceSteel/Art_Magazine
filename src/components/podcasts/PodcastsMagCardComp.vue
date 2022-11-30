@@ -11,9 +11,9 @@
 			<h3>{{ podcast.title }}</h3>
 		</div>
 		<div class="info">
-			<div><b>Date</b> {{ podcast.date }}</div>
-			<div><b>Duration</b>{{ podcast.duration }}</div>
-			<router-link :to="{ name: 'PodcastPage', params: { id: podcast.id }}" class="all_others_link">
+			<div><b>Date </b> {{ podcast.date }}</div>
+			<div><b>Duration </b>{{ podcast.duration }}</div>
+			<router-link :to="{ name: 'PodcastPage', params: { id: podcast.id } }" class="all_others_link">
                     <i>LISTEN</i>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

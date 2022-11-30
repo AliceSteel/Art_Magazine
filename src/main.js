@@ -16,6 +16,20 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Initialize Firestore
 export const db = getFirestore(firebaseApp);
 
+const app = createApp(App)
 
+app.use(router).use(store)
 
-createApp(App).use(router).use(store).mount('#app')
+const requireComponent = require.context('./components', true, /App[A-Z]\w+\.(vue|js)$/)
+requireComponent.keys().forEach(function (fileName) {
+  let baseComponentConfig = requireComponent(fileName)
+  baseComponentConfig = baseComponentConfig.default || baseComponentConfig
+  const baseComponentName = baseComponentConfig.name || (
+    fileName
+      .replace(/^.+\//, '')
+      .replace(/\.\w+$/, '')
+  )
+  app.component(baseComponentName, baseComponentConfig)
+})
+
+app.mount('#app')

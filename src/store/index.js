@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import { findById } from "@/helpers";
 import { db } from '@/main'
-import { getDocs, collection, query, where,/*limit */} from 'firebase/firestore'
+import { getDocs, getDoc, collection, query, where, limit, startAfter, doc} from 'firebase/firestore'
 
 export default createStore({
 	state: {
@@ -42,18 +42,29 @@ export default createStore({
 			})
 			return docs
 		},
-		async fetchAuthorPosts ({ commit/*, state*/ }, { authorName } ) {
-			const postsQuery = query(collection(db, "magazine"), 
+		async fetchAuthorPosts ({ commit/*, state*/ }, { authorName, startAftr = null }) {
+			let postsQuery = null
+			const commonQuery = [
+				collection(db, "magazine"), 
 				where("author", "==", authorName),
-				/*limit(2)*/
-				)
+				limit(3)
+			];
+			if(startAftr){
+				const postRef = doc(db, 'magazine', startAftr.id)
+				const lastPost = await getDoc(postRef)
+				postsQuery = query(...commonQuery, startAfter(lastPost));
+			}else {
+				postsQuery = query(...commonQuery);
+			}
 	
 			const posts = await getDocs(postsQuery)
-			console.log(posts);
 			posts.forEach((doc) => {
 				const item = {...doc.data(), id: doc.id}
 				commit('setCollection', { item, resource: 'postsByAuthor'})
 			})
+		},
+		emptyCollection ({commit}, {resource}){
+			commit('emptyItems', { resource })
 		}
 	},
 	mutations: {
@@ -62,6 +73,9 @@ export default createStore({
 		},
 		setItem (state,  { item, resource }) {
 			state[resource] = item
+		},
+		emptyItems ( state, {resource}) {
+			state[resource] = []
 		}
 	}
 })

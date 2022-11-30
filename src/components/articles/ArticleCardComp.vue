@@ -12,9 +12,9 @@
 				<p>{{ article.articleDescr }}</p>
 			</div>
 			<div class="info">
-				<div><b>Text</b>{{ article.author }}</div>
-				<div><b>Date</b> {{ article.date }}</div>
-				<div><b>Duration</b>{{ article.duration }}</div>
+				<div><b>Text: </b>{{ article.author }}</div>
+				<div><b>Date </b> {{ article.date }}</div>
+				<div><b>Duration </b>{{ article.duration }}</div>
 				<div class="label">{{ article.label }}</div>
 			</div>
 		</div>
