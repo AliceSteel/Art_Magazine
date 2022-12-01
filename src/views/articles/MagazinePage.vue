@@ -3,22 +3,22 @@
 		<h1>magazine</h1>
 		<div class="categories">
 			<h4>categories</h4>
-			<div class="label">all</div>
-			<div class="label">art</div>
-			<div class="label">street art</div>
-			<div class="label">sculptures</div>
+			<button @click='filterPosts("all")' class="label">all</button>
+			<button @click='filterPosts("art")' class="label">art</button >
+			<button @click='filterPosts("street art")' class="label">street art</button>
+			<button @click='filterPosts("sculptures")' class="label">sculptures</button>
 		</div>
 
 		<div class="articles_wrap">
 			<ArticleCardMagComp 
-				v-for='article in getLatestPosts'
+				v-for='article in posts'
 				:key='article.id'
 				:article='article'
 			/>
 			<AppInfiniteScroll
 					v-if="this.$store.state.magazine.length < count"
 					@load="fetchLatestPosts"
-					:done="getLatestPosts.length === count"
+					:done="posts.length === count"
 				/>
 		</div>
 	</main>
@@ -35,13 +35,18 @@ export default {
     components: {
         ArticleCardMagComp
     },
+	data(){
+		return {
+			posts: this.$store.state.magazine
+		}	
+	},
 	computed: {
-		getLatestPosts () {
+	/*	getLatestPosts () {
 			return this.$store.state.magazine
-		},
+		},*/
 		lastPostFetched() {
-			if (this.getLatestPosts.length === 0) return null;
-			return this.getLatestPosts[this.getLatestPosts.length - 1];
+			if (this.posts.length === 0) return null;
+			return this.posts[this.posts.length - 1];
 		},
 		count(){
 			return this.$store.state.collectionCount
@@ -56,11 +61,18 @@ export default {
 				startAftr: this.lastPostFetched,
 			});
 		},
+		filterPosts (catName) {
+			this.posts = this.$store.state.magazine
+			if(catName !== 'all') {
+				this.posts = this.posts.filter((post) => {
+					return post.label === catName
+				})
+			}
+		}
     },
 	async created () {
         if(this.$store.state.magazine.length === 0){
 			await this.fetchFirestoreCollectionCount({resource: 'magazine'})
-			console.log(this.$store.state.collectionCount);
             await this.fetchLatestPosts({resource: 'magazine'})
 		}
 		this.asyncDataStatus_fetched()

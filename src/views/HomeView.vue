@@ -35,7 +35,9 @@
                         <img src="https://lh3.googleusercontent.com/pw/AL9nZEWqZ30IkHBSwQkrGXhdKumEUtj86S1vaE8xNic05rMg7X3Psli4OkAR4x1bXpi-R4sCa_kzXnSWOM3EvjeSzIiE9wblQOJPT5Ng64sYMluK1o-36CnvbflhwlKlroTAm8czBWqSkBUEnStt5gEstEwDfQ=w369-h462-no?authuser=0"
                             alt="magazine cover" />
                     </div>
-                    <button class="black_btn"><i>BUY NOW</i></button>
+                    <a href="https://magazinenewsstand.com/digital-magazines" target="_blank" rel="nofollow, noreferrer" class="black_btn">
+                        <i>BUY NOW</i>
+                    </a>
                 </div>
 
                 <div class="newsletter">
@@ -172,20 +174,23 @@ section.homepage_articles {
         padding-bottom: 1rem;
     }
 }
-
+.latest_issue {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
 .date {
     font-size: 3rem;
     font-weight: 700;
-    padding-bottom: 1rem;
 }
 .magazine_img_wrap {
     width: 100%;
     max-width: 370px;
-    padding-bottom: 1rem;
 }
 
 .black_btn {
     background-color: #000;
+    max-width: 100px;
     color: #fff;
     text-transform: uppercase;
     padding: 24px 16px;
