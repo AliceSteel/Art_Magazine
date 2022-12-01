@@ -151,6 +151,15 @@
     margin-bottom: 12vw;
   }
 
+  .black_btn {
+    background-color: #000;
+    max-width: 100px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 24px 16px;
+    font-size: 14px;
+  }
+
 
   @media screen and (min-width: 1700px) {
 		h1 {

@@ -6,12 +6,7 @@
 		<div class="container footer_wrap">
 			<div class="design_news_sign_up">
 				<h2><i>Design News to your inbox</i></h2>
-				<form class="sign_up_form">
-					<input type="email" placeholder="Email" />
-					<button type="submit" class="white_btn">
-						<i>sign up</i>
-					</button>
-				</form>
+				<NewsletterForm class='footer_style'/>
 			</div>
 			<ul class="links">
 				<li>
@@ -96,8 +91,11 @@
 </template>
 
 <script>
+import NewsletterForm from '@/components/NewsletterForm.vue';
+
 export default {
 	name: "FooterView",
+	components: { NewsletterForm }
 };
 </script>
 
@@ -130,31 +128,8 @@ footer {
 		font-weight: 400;
 	}
 
-	.sign_up_form {
-		align-self: center;
-		flex-basis: 30%;
-		flex-grow: 1;
-		display: flex;
-		gap: 12px;
-
-		input {
-			height: 50px;
-			font-size: 1rem;
-			padding: 15px;
-		}
-	}
 }
 
-.white_btn {
-	width: 100%;
-	height: 50px;
-	max-width: 100px;
-	background-color: #fff;
-	color: #000;
-	text-transform: uppercase;
-	font-size: 14px;
-	border-color: #fff;
-}
 
 .footer_rights_and_social {
 	width: 100%;
@@ -164,4 +139,6 @@ footer {
 	align-items: center;
 	font-size: 14px;
 }
+
+
 </style>
