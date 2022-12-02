@@ -2,11 +2,18 @@
 	<main v-if="asyncDataStatus_ready">
 		<div class="container">
 			<h1>art &amp; life</h1>
-			<div class="black_running_line">
-				<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
-				adipiscing elit +++ <b>NEWS+++ </b>Lorem ipsum dolor sit amet,
-				consectetur adipiscing elit +++
-			</div>
+			<div class="black_bg">
+				<div class="marquee">
+					<p>
+						<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit +++ <b>NEWS+++ </b>Lorem ipsum dolor sit
+						amet, consectetur adipiscing elit +++ <b>NEWS+++ </b>Lorem
+						ipsum dolor sit amet, consectetur adipiscing elit +++
+						<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit +++
+					</p>
+				</div>
+			</div>	
 		</div>
 		<ArticleHeaderComp :article="last6Articles[1]" />
 
@@ -58,7 +65,7 @@
 				<div class="newsletter">
 					<h4>newsletter</h4>
 					<h3>Design news to your inbox</h3>
-					<NewsletterForm/>
+					<NewsletterForm />
 				</div>
 			</div>
 		</section>
@@ -128,7 +135,7 @@ import ArticleHeaderComp from "@/components/articles/ArticleHeaderComp.vue";
 import ArticleCardComp from "@/components/articles/ArticleCardComp.vue";
 import PodcastCardComp from "@/components/podcasts/PodcastCardComp.vue";
 import AuthorCardComp from "@/components/authors/AuthorCardComp.vue";
-import NewsletterForm from '@/components/NewsletterForm.vue'
+import NewsletterForm from "@/components/NewsletterForm.vue";
 
 export default {
 	name: "HomeView",
@@ -138,9 +145,9 @@ export default {
 		ArticleCardComp,
 		PodcastCardComp,
 		AuthorCardComp,
-        NewsletterForm
+		NewsletterForm,
 	},
-	
+
 	computed: {
 		last6Articles() {
 			let articles = this.$store.state.magazine;
@@ -158,7 +165,7 @@ export default {
 		},
 	},
 	methods: {
-		...mapActions(["fetchAllCollection"])
+		...mapActions(["fetchAllCollection"]),
 	},
 
 	async created() {
@@ -177,6 +184,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 section.homepage_articles {
 	display: flex;
 	flex-wrap: wrap;
@@ -217,12 +225,10 @@ section.homepage_articles {
 	max-width: 370px;
 }
 
-
 .newsletter {
 	background-color: #f8f8f8;
 	padding: 30px;
 }
-
 
 /* ===========AUTHORS====================================== */
 

@@ -1,7 +1,11 @@
 <template>
 	<footer>
-		<div class="black_running_line">
-			<i>NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++</i>
+		<div class="container">
+			<div class="black_bg">
+				<div class="marquee">
+					<p><i>NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++</i></p>
+				</div>
+			</div>	
 		</div>
 		<div class="container footer_wrap">
 			<div class="design_news_sign_up">
