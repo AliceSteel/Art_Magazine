@@ -15,8 +15,10 @@
 				</div>
 			</div>	
 		</div>
-		<ArticleHeaderComp :article="last6Articles[4]" />
-
+		<router-link :to="{ name: 'ArticlePage', params: { id: last6Articles[4].id } }">
+			<ArticleHeaderComp :article="last6Articles[4]" />
+		</router-link>
+		
 		<section class="container homepage_articles">
 			<div class="articles" v-if="last6Articles">
 				<ArticleCardComp

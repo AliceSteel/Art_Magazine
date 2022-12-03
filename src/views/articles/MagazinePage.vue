@@ -1,5 +1,5 @@
 <template>
-	<main class="container" v-if="asyncDataStatus_ready">
+	<div class="container" v-if="asyncDataStatus_ready">
 		<h1>magazine</h1>
 		<div class="categories">
 			<h4>categories</h4>
@@ -14,14 +14,14 @@
 				v-for='article in posts'
 				:key='article.id'
 				:article='article'
-			/>
-			<AppInfiniteScroll
-					v-if="this.$store.state.magazine.length < count"
+			/>	
+		</div>
+		<AppInfiniteScroll
+					v-if="posts.length < count"
 					@load="fetchLatestPosts"
 					:done="posts.length === count"
-				/>
-		</div>
-	</main>
+		/>
+	</div>
 </template>
 
 <script>
@@ -41,9 +41,6 @@ export default {
 		}	
 	},
 	computed: {
-	/*	getLatestPosts () {
-			return this.$store.state.magazine
-		},*/
 		lastPostFetched() {
 			if (this.posts.length === 0) return null;
 			return this.posts[this.posts.length - 1];
@@ -71,7 +68,7 @@ export default {
 		}
     },
 	async created () {
-        if(this.$store.state.magazine.length === 0){
+        if(this.$store.state.magazine.length < 7){
 			await this.fetchFirestoreCollectionCount({resource: 'magazine'})
             await this.fetchLatestPosts({resource: 'magazine'})
 		}

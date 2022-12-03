@@ -57,7 +57,7 @@
 
                 <div class="quote">
                 {{ article.quote }}
-                    <sub> {{ article.quoteAuthor }} </sub>
+                    <sub> {{ article.quoteBy }} </sub>
                 </div>
 
                 <p><i> {{ article.articleTextP4 }} </i></p>

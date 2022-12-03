@@ -65,7 +65,6 @@ export default createStore({
 		async fetchFirestoreCollectionCount ({commit}, { resource }){
 			const counted = await getCountFromServer(collection(db, `${resource}`))
 			const item = counted.data().count;
-			console.log(item);
 			commit('setItem', {item, resource: 'collectionCount'})
 		},
 		async fetchAuthorPosts ({ commit/*, state*/ }, { authorName, startAftr = null }) {

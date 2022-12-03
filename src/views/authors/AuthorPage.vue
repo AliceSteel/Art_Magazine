@@ -96,8 +96,9 @@
 					:article="post"
 				/>
 				<AppInfiniteScroll
+					v-if="getLatestPosts.length < +author.postsCount"
 					@load="fetchLatestPosts"
-					:done="getLatestPosts.length > 5"
+					:done="getLatestPosts.length === +author.postsCount"
 				/>
 			</div>
 		</section>
