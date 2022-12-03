@@ -15,7 +15,7 @@
 				</div>
 			</div>	
 		</div>
-		<ArticleHeaderComp :article="last6Articles[1]" />
+		<ArticleHeaderComp :article="last6Articles[4]" />
 
 		<section class="container homepage_articles">
 			<div class="articles" v-if="last6Articles">
@@ -151,14 +151,12 @@ export default {
 	computed: {
 		last6Articles() {
 			let articles = this.$store.state.magazine;
-			const last6Articles = articles.reverse().slice(0, 6);
-			return last6Articles;
+			return articles.slice((articles.length - 6), (articles.length));
 		},
 
 		last3Podcasts() {
 			let podcasts = this.$store.state.podcasts;
-			const last3podcasts = podcasts.reverse().slice(0, 3);
-			return last3podcasts;
+			return podcasts.slice((podcasts.length - 3), (podcasts.length))
 		},
 		first6Authors() {
 			return this.$store.state.authors.slice(0, 6);
