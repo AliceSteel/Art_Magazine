@@ -17,7 +17,7 @@
 			/>	
 		</div>
 		<AppInfiniteScroll
-					v-if="posts.length < count"
+					v-if="$store.state.magazine.length < count"
 					@load="fetchLatestPosts"
 					:done="posts.length === count"
 		/>
@@ -52,13 +52,20 @@ export default {
 	methods: {
         ...mapActions(['fetchCollectionByScroll']),
 		...mapActions(['fetchFirestoreCollectionCount']),
+		...mapActions(['fetchAllCollection']),
+		
 		fetchLatestPosts() {
 			return this.fetchCollectionByScroll({
 				resource: 'magazine',
 				startAftr: this.lastPostFetched,
 			});
 		},
-		filterPosts (catName) {
+		async filterPosts (catName) {
+			if (this.$store.state.magazine.length < this.count ){
+				console.log('execurte fetchingAll');
+				this.$store.dispatch("emptyCollection", { resource: "magazine" });
+				await this.fetchAllCollection({resource: 'magazine'})
+			}
 			this.posts = this.$store.state.magazine
 			if(catName !== 'all') {
 				this.posts = this.posts.filter((post) => {
@@ -68,8 +75,8 @@ export default {
 		}
     },
 	async created () {
-        if(this.$store.state.magazine.length < 7){
-			await this.fetchFirestoreCollectionCount({resource: 'magazine'})
+		await this.fetchFirestoreCollectionCount({resource: 'magazine'})
+        if(this.$store.state.magazine.length < this.count){
             await this.fetchLatestPosts({resource: 'magazine'})
 		}
 		this.asyncDataStatus_fetched()
