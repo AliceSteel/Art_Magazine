@@ -109,8 +109,7 @@ export default {
         },
         last3Posts () {
             let articles = this.$store.state.magazine
-            const last3Articles = articles.reverse().slice(0, 3)
-            return last3Articles
+            return articles.slice((articles.length - 3), (articles.length));
         },
         },
         methods: {

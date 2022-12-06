@@ -1,6 +1,6 @@
 <template>
 	<div class="container" v-if="asyncDataStatus_ready">
-		<h1>magazine</h1>
+		<h1 class="magazine_h1">magazine</h1>
 		<div class="categories">
 			<h4>categories</h4>
 			<button @click='filterPosts("all")' class="label">all</button>
@@ -85,18 +85,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.magazine_h1 {
+	margin-inline-start: -15px;
+}
 .categories {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 	gap: 12px;
-	padding: 67px 0;
+	padding: 35px 0 67px;
 
 	h4 {
 		margin-right: auto;
 	}
 	.label {
 		margin: 0;
+		background-color: #fff;
+		&:hover {
+			scale: 1.1
+		}
 	}
 }
 

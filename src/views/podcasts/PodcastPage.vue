@@ -87,6 +87,27 @@
 				<p>{{ podcast.textP3 }}</p>
 			</div>
 		</div>
+		<section class="container">
+            <div class="section_title_wrap">
+                <h2>Latest Episodes</h2>
+                <router-link to='/podcasts' class="all_others_link">
+                    <i>ALL EPISODES</i>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.172 11L10.808 5.636L12.222 4.222L20 12L12.222 19.778L10.808 18.364L16.172 13H4V11H16.172Z"
+                            fill="black" />
+                    </svg>
+                </router-link>
+            </div>
+
+            <div class="latest_3_items">
+                <PodcastCardComp 
+                    v-for='episode in last3Podcasts'
+                    :key='episode.id'
+                    :podcast="episode"
+                />
+		</div>
+        </section>  
 	</main>
 </template>
 
@@ -94,11 +115,12 @@
 import asynDataStatus from "@/mixins/asyncDataStatus";
 import { mapActions } from "vuex";
 import ContentPagesHeader from "@/components/ContentPagesHeader.vue";
+import PodcastCardComp from "@/components/podcasts/PodcastCardComp.vue"
 
 export default {
 	name: "PodcastPage",
 	mixins: [asynDataStatus],
-	components: { ContentPagesHeader },
+	components: { ContentPagesHeader, PodcastCardComp },
 	computed: {
 		id() {
 			return this.$route.params.id;
@@ -108,6 +130,10 @@ export default {
 		},
 		displayId() {
 			return this.id.replace("p", "0");
+		},
+		last3Podcasts() {
+			let podcasts = this.$store.state.podcasts;
+			return podcasts.slice((podcasts.length - 3), (podcasts.length))
 		},
 	},
 	methods: {

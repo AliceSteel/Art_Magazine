@@ -6,8 +6,8 @@
 		<div class="author_card_content">
 			<h3>{{ author.name }}</h3>
 			<div class="info">
-				<div><b>Job</b>{{ author.job }}</div>
-				<div><b>City</b> {{ author.city }}</div>
+				<div><b>Job </b> {{ author.job }}</div>
+				<div><b>City </b> {{ author.city }}</div>
 				<router-link
 					v-if='this.$route.name === "authors"'
 					:to="{ name: 'AuthorPage', params: { id: author.id } }"

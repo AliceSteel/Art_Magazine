@@ -1,51 +1,49 @@
 <template>
-  <main class="container" v-if="asyncDataStatus_ready">
+	<main class="container" v-if="asyncDataStatus_ready">
 		<h1>podcast</h1>
 
 		<div class="podcasts_wrap">
-      <PodcastsMagCardComp 
-				v-for='podcast in podcasts'
-				:key='podcast.id'
-				:podcast='podcast'
+			<PodcastsMagCardComp
+				v-for="podcast in podcasts"
+				:key="podcast.id"
+				:podcast="podcast"
 			/>
 		</div>
 	</main>
 </template>
 
 <script>
-import asynDataStatus from '@/mixins/asyncDataStatus'
-import { mapActions } from 'vuex'
-import PodcastsMagCardComp from '@/components/podcasts/PodcastsMagCardComp.vue'
+import asynDataStatus from "@/mixins/asyncDataStatus";
+import { mapActions } from "vuex";
+import PodcastsMagCardComp from "@/components/podcasts/PodcastsMagCardComp.vue";
 
 export default {
-  name: 'PodcastsPage',
-  mixins: [asynDataStatus],
-  components: { PodcastsMagCardComp },
-  computed: {
-		podcasts () {
-      let podcastsReversed = this.$store.state.podcasts
-			return podcastsReversed.reverse()
-		}
+	name: "PodcastsPage",
+	mixins: [asynDataStatus],
+	components: { PodcastsMagCardComp },
+	computed: {
+		podcasts() {
+			let podcastsReversed = this.$store.state.podcasts;
+			return podcastsReversed.reverse();
+		},
 	},
 	methods: {
-      ...mapActions(['fetchAllCollection'])
-  },
-	async created () {
-    if(this.$store.state.podcasts.length === 0){
-      await this.fetchAllCollection({resource: 'podcasts'})
+		...mapActions(["fetchAllCollection"]),
+	},
+	async created() {
+		if (this.$store.state.podcasts.length === 0) {
+			await this.fetchAllCollection({ resource: "podcasts" });
 		}
-		this.asyncDataStatus_fetched()
-	}
-}
-
+		this.asyncDataStatus_fetched();
+	},
+};
 </script>
 
 <style lang='scss' scoped>
-  .podcasts_wrap {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 140px 0;
-  }
-  
+.podcasts_wrap {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: 30px 0 0;
+}
 </style>

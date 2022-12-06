@@ -1,5 +1,5 @@
 <template>
-	<div class="podcast_card">
+	<router-link :to="{ name: 'PodcastPage', params: { id: podcast.id } }" class="podcast_card">
 		<div class="podcast_img_wrap">
 			<img :src="podcast.imgUrl" alt="podcast" />
 		</div>
@@ -10,7 +10,7 @@
 			<div><b>Date</b> {{ podcast.date }}</div>
 			<div><b>Duration</b> {{ podcast.duration }}</div>
 		</div>
-	</div>
+	</router-link>
 </template>
 
 <script>

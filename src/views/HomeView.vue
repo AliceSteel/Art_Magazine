@@ -237,4 +237,13 @@ section.homepage_articles {
 	flex-wrap: wrap;
 	margin-bottom: 12vw;
 }
+/* ======================================================== */
+@media screen and (max-width: 1066px) {
+	.print_magazine {
+		flex-direction: row;
+		flex-basis: 100%;
+		max-width: 100%;
+		justify-content: space-between;
+	}
+}
 </style>

@@ -46,7 +46,7 @@ export default {
 .podcast_wrap {
 	width: 100%;
 	padding: 48px 0;
-	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
