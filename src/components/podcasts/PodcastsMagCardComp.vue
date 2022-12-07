@@ -48,6 +48,7 @@ export default {
 	padding: 48px 0;
 	border-top: 1px solid #000;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: 64px;
@@ -68,6 +69,7 @@ export default {
 	}
 }
 .podcast_descr {
+	flex-basis: 30%;
 	flex-grow: 1;
 	display: flex;
 	align-items: center;

@@ -65,4 +65,23 @@ export default {
 .descr h3 {
 	padding-bottom: 12px;
 }
+@media screen and (max-width: 500px) {
+	.article {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 1rem;
+
+		&_pic {
+			width: 100%;
+		}
+		&_content {
+			padding-left: 0;
+			display: flex;
+			gap: 1rem;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: space-between;
+		}
+	}
+}
 </style>

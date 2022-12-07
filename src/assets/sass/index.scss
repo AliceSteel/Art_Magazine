@@ -83,7 +83,7 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    padding: 50px 0;
+   // padding: 50px 0;
   }
   h1 {
     width: 100%;
@@ -128,6 +128,7 @@
     border-radius: 1rem;
     font-size: 12px;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .section_title_wrap {
@@ -150,8 +151,9 @@
     max-width: 100px;
     color: #fff;
     text-transform: uppercase;
-    padding: 24px 16px;
+    padding: 1rem;
     font-size: 14px;
+   
   }
   /* Black Running horizontal text============================================ */
   .black_bg {

@@ -103,7 +103,7 @@ export default {
 		max-width: 350px;
 		height: 50px;
 		font-size: 1rem;
-		padding: 15px;
+		padding: 1rem;
 	}
 }
 .errors_panel {
@@ -132,6 +132,7 @@ export default {
 	flex-grow: 1;
 	display: flex;
 	gap: 12px;
+	min-width: 200px;
 
 	button {
 		background-color: #fff;

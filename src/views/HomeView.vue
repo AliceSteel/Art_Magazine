@@ -246,4 +246,9 @@ section.homepage_articles {
 		justify-content: space-between;
 	}
 }
+@media screen and (max-width: 500px) {
+	.print_magazine {
+		flex-direction: column;
+	}
+}
 </style>

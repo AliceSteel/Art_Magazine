@@ -12,22 +12,23 @@
 				<h2><i>Design News to your inbox</i></h2>
 				<NewsletterForm class='footer_style'/>
 			</div>
-			<ul class="links">
-				<li>
-					<router-link to="/" class="logo_wrap">
+			<nav>
+				<router-link to="/" class="logo_wrap">
 						<img src="@/assets/images/logo_white.png" alt="logo" />
-					</router-link>
-				</li>
-				<li>
-					<router-link to="/magazine"> Magazine </router-link>
-				</li>
-				<li>
-					<router-link to="/authors"> Authors </router-link>
-				</li>
-				<li>
-					<router-link to="/podcasts"> Podcast </router-link>
-				</li>
-			</ul>
+				</router-link>
+				<ul class="links">
+					<li>
+						<router-link to="/magazine"> Magazine </router-link>
+					</li>
+					<li>
+						<router-link to="/authors"> Authors </router-link>
+					</li>
+					<li>
+						<router-link to="/podcasts"> Podcast </router-link>
+					</li>
+				</ul>
+			</nav>
+			
 			<div class="footer_rights_and_social">
 				<span> © Made by Pawel Gola - Powered by Webflow </span>
 				<ul class="links">
@@ -118,6 +119,12 @@ footer {
 	flex-direction: column;
 	justify-content: space-around;
 	gap: 9vw;
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		align-items: center;
+	}
 }
 
 .design_news_sign_up {
@@ -134,7 +141,6 @@ footer {
 
 }
 
-
 .footer_rights_and_social {
 	width: 100%;
 	height: fit-content;
@@ -143,6 +149,10 @@ footer {
 	align-items: center;
 	font-size: 14px;
 }
-
+@media screen and (max-width: 500px) {
+	.links {
+		display: none;
+	}
+}
 
 </style>

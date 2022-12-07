@@ -54,8 +54,9 @@ export default {
 	border: 1px solid #000;
 }
 .pic_wrap {
-	width: 150px;
-	height: 150px;
+	width: 100%;
+	max-width: 150px;
+	max-height: 150px;
 }
 .author_card_content {
 	width: 100%;
@@ -66,6 +67,20 @@ export default {
 	gap: 1rem;
 	.info {
 		width: max-content;
+	}
+}
+@media screen and (max-width: 500px){
+	.author_card {
+		width: 100%;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		border: 1px solid #000;
+	}
+	.author_card_content, .info {
+		justify-content: center;
 	}
 }
 </style>

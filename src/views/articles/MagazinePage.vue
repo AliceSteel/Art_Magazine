@@ -90,6 +90,7 @@ export default {
 }
 .categories {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: flex-end;
 	gap: 12px;
