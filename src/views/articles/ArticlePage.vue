@@ -129,7 +129,7 @@ export default {
 <style lang='scss' scoped>
     
 .article_content_wrap {
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
