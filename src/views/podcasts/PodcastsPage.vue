@@ -2,13 +2,14 @@
 	<main class="container" v-if="asyncDataStatus_ready">
 		<h1>podcast</h1>
 
-		<div class="podcasts_wrap">
+		<div class="podcasts_wrap" v-if="podcasts.length">
 			<PodcastsMagCardComp
 				v-for="podcast in podcasts"
 				:key="podcast.id"
 				:podcast="podcast"
 			/>
 		</div>
+		<div v-else class='empty_message'><h4>No podcasts available</h4></div>
 	</main>
 </template>
 
@@ -31,7 +32,7 @@ export default {
 		...mapActions(["fetchAllCollection"]),
 	},
 	async created() {
-		if (this.$store.state.podcasts.length === 0) {
+		if (!this.$store.state.podcasts.length) {
 			await this.fetchAllCollection({ resource: "podcasts" });
 		}
 		this.asyncDataStatus_fetched();

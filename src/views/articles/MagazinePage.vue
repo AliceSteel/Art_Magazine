@@ -8,19 +8,21 @@
 			<button @click='filterPosts("street art")' class="label">street art</button>
 			<button @click='filterPosts("sculptures")' class="label">sculptures</button>
 		</div>
-
-		<div class="articles_wrap">
+		<div v-if="posts.length">
+			<div class="articles_wrap">
 			<ArticleCardMagComp 
 				v-for='article in posts'
 				:key='article.id'
 				:article='article'
 			/>	
+			</div>
+			<AppInfiniteScroll
+							v-if="$store.state.magazine.length < count"
+							@load="fetchLatestPosts"
+							:done="posts.length === count"
+			/>	
 		</div>
-		<AppInfiniteScroll
-					v-if="$store.state.magazine.length < count"
-					@load="fetchLatestPosts"
-					:done="posts.length === count"
-		/>
+		<div class='empty_message' v-else><h4>No articles available</h4></div>
 	</div>
 </template>
 

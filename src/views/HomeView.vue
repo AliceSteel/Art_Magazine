@@ -50,7 +50,7 @@
 					<div class="date">03/2022</div>
 					<div class="magazine_img_wrap">
 						<img
-							src="https://lh3.googleusercontent.com/pw/AL9nZEWqZ30IkHBSwQkrGXhdKumEUtj86S1vaE8xNic05rMg7X3Psli4OkAR4x1bXpi-R4sCa_kzXnSWOM3EvjeSzIiE9wblQOJPT5Ng64sYMluK1o-36CnvbflhwlKlroTAm8czBWqSkBUEnStt5gEstEwDfQ=w369-h462-no?authuser=0"
+							src="https://firebasestorage.googleapis.com/v0/b/art-magazine-2da1b.appspot.com/o/content_images%2Fmagazin-cover.jpg?alt=media&token=d5e53b19-50c5-445c-8a2a-3e3b2a179779"
 							alt="magazine cover"
 						/>
 					</div>
@@ -169,13 +169,13 @@ export default {
 	},
 
 	async created() {
-		if (this.$store.state.magazine.length == []) {
+		if (!this.$store.state.magazine.length) {
 			await this.fetchAllCollection({ resource: "magazine" });
 		}
-		if (this.$store.state.podcasts.length == []) {
+		if (!this.$store.state.podcasts.length) {
 			await this.fetchAllCollection({ resource: "podcasts" });
 		}
-		if (this.$store.state.authors.length == []) {
+		if (!this.$store.state.authors.length) {
 			await this.fetchAllCollection({ resource: "authors" });
 		}
 		this.asyncDataStatus_fetched();

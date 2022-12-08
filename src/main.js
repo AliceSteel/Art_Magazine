@@ -7,8 +7,6 @@ import {getFirestore} from 'firebase/firestore'
 
 import './assets/sass/index.scss';
 
-
-
 import firebaseConfig from '@/utilities/firebase.js'
   
   // Initialize Firebase

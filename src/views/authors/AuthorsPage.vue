@@ -2,13 +2,14 @@
 	<main class="container" v-if="asyncDataStatus_ready">
 		<h1>authors</h1>
 
-		<div class="authors_wrap">
+		<div class="authors_wrap" v-if="authors.length">
 			<AuthorCardComp
 				v-for="author in authors"
 				:key="author.name"
 				:author="author"
 			/>
 		</div>
+		<div v-else class='empty_message'><h4>No authors information available</h4></div>
 	</main>
 </template>
 
@@ -30,7 +31,7 @@ export default {
 		...mapActions(["fetchAllCollection"]),
 	},
 	async created() {
-		if (this.$store.state.authors.length === 0) {
+		if (!this.$store.state.authors.length) {
 			await this.fetchAllCollection({ resource: "authors" });
 		}
 		this.asyncDataStatus_fetched();
