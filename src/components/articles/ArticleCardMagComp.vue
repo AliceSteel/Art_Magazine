@@ -46,9 +46,10 @@ export default {
 }
 .article_img_wrap {
 	width: 100%;
-	height: 100%;
 	max-width: 400px;
 	max-height: 400px;
+	overflow: hidden;
+	aspect-ratio: 1/1;
 	img {
 		height: 100%;
 	}

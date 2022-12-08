@@ -14,7 +14,7 @@
 			<div><b>Date </b> {{ podcast.date }}</div>
 			<div><b>Duration </b>{{ podcast.duration }}</div>
 			<router-link :to="{ name: 'PodcastPage', params: { id: podcast.id } }" class="all_others_link">
-                    <i>LISTEN</i>
+                    <b><i>LISTEN</i></b>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.172 11L10.808 5.636L12.222 4.222L20 12L12.222 19.778L10.808 18.364L16.172 13H4V11H16.172Z"
@@ -53,7 +53,10 @@ export default {
 	justify-content: space-between;
 	gap: 64px;
 	.info {
-		max-width: 30%;
+		flex-basis: 15%;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: flex-start;
 	}
 }
 .podcast_id {
