@@ -55,15 +55,7 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-/*.inersection-observer {
-	margin-top: 2rem;
-	text-align: center;
-	border: 1px solid #000;
-	padding: 15px;
-	border-radius: 20px;
-	pointer-events: none;
-	
-}*/
+
 .inersection-observer {
 	margin-top: 1rem;
 	pointer-events: none;
