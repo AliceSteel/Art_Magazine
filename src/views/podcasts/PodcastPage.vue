@@ -140,10 +140,10 @@ export default {
 		...mapActions(["fetchAllCollection"]),
 	},
 	async created() {
-		if (this.$store.state.podcasts.length === 0) {
+		if (!this.$store.state.podcasts.length) {
 			await this.fetchAllCollection({ resource: "podcasts" });
-			this.asyncDataStatus_fetched();
-		} else this.asyncDataStatus_fetched();
+		}
+		this.asyncDataStatus_fetched();
 	},
 };
 </script>

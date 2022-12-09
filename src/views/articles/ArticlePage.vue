@@ -116,11 +116,10 @@ export default {
             ...mapActions(['fetchAllCollection'])
         },
         async created () {
-            if(this.$store.state.magazine == []){
+        
+            if(this.$store.state.magazine.length < 7){
                 await this.fetchAllCollection({resource: 'magazine'})
-                this.asyncDataStatus_fetched()
             }
-            else 
             this.asyncDataStatus_fetched() 
         }
 }
