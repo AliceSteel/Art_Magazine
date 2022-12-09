@@ -7,9 +7,18 @@ import {getFirestore} from 'firebase/firestore'
 
 import './assets/sass/index.scss';
 
-import firebaseConfig from '@/utilities/firebase.js'
+//import firebaseConfig from '@/utilities/firebase.js'
   
-  // Initialize Firebase
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyB-BAxnUmE9Y-3Xzju6kOCLfpH70wQVxOo",
+    authDomain: "art-magazine-2da1b.firebaseapp.com",
+    projectId: "art-magazine-2da1b",
+    storageBucket: "art-magazine-2da1b.appspot.com",
+    messagingSenderId: "723347185477",
+    appId: "1:723347185477:web:de6f809463ac2fbb56a82c"
+};
+  
 const firebaseApp = initializeApp(firebaseConfig);
 // Initialize Firestore
 export const db = getFirestore(firebaseApp);
