@@ -10,11 +10,11 @@
 		</div>
 		<div v-if="posts.length">
 			<div class="articles_wrap">
-			<ArticleCardMagComp 
-				v-for='article in posts'
-				:key='article.id'
-				:article='article'
-			/>	
+				<ArticleCardMagComp 
+					v-for='article in posts'
+					:key='article.id'
+					:article='article'
+				/>	
 			</div>
 			<AppInfiniteScroll
 							v-if="$store.state.magazine.length < count"
@@ -114,10 +114,15 @@ export default {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	margin-bottom: 12vw;
+	margin-bottom: 50px;
 
 	a {
 		color: #000;
+	}
+}
+@media screen and (max-width: 360px) {
+	.articles_wrap {
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	}
 }
 </style>

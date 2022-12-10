@@ -153,7 +153,7 @@ h2 {
 	padding: 1rem 0 2rem;
 }
 .podcast_content_wrap {
-	width: 100%;
+	width: 90%;
 	max-width: 1000px;
 	margin: 0 auto;
 	display: flex;
