@@ -1,21 +1,22 @@
 <template>
 	<div class="container">
-		<router-link to="/" class="logo_wrap">
+		<router-link to="/" class="logo_wrap" title="Homepage">
 			<img src="@/assets/images/logo.png" alt="logo" />
 		</router-link>
 		<ul class="links">
 			<li>
-				<router-link to="/magazine"> Magazine </router-link>
+				<router-link to="/magazine" title="Magazine Page"> Magazine </router-link>
 			</li>
 			<li>
-				<router-link to="/authors"> Authors </router-link>
+				<router-link to="/authors" title="Authors Page"> Authors </router-link>
 			</li>
 			<li>
-				<router-link to="/podcasts"> Podcast </router-link>
+				<router-link to="/podcasts" title="Podcasts Page"> Podcast </router-link>
 			</li>
 			<li>
 				<a
 					href="https://www.instagram.com/"
+					title="Instagram"
 					target="_blank"
 					rel="nofollow, noreferrer"
 				>
@@ -36,6 +37,7 @@
 				<a
 					href="https://twitter.com/home"
 					target="_blank"
+					title="Twitter"
 					rel="nofollow, noreferrer"
 				>
 					<svg
@@ -55,6 +57,7 @@
 				<a
 					href="https://www.youtube.com/"
 					target="_blank"
+					title="YouTube"
 					rel="nofollow, noreferrer"
 				>
 					<svg
@@ -84,13 +87,13 @@
 	</div>
     <ul class="dropdown_menu" v-if="isActive">
 			<li>
-				<router-link to="/magazine" @click="toggleMenu()" > Magazine </router-link>
+				<router-link to="/magazine" @click="toggleMenu()" title="Magazine Page"> Magazine </router-link>
 			</li>
 			<li>
-				<router-link to="/authors" @click="toggleMenu()" > Authors </router-link>
+				<router-link to="/authors" @click="toggleMenu()" title="Authors Page"> Authors </router-link>
 			</li>
 			<li>
-				<router-link to="/podcasts" @click="toggleMenu()" > Podcast </router-link>
+				<router-link to="/podcasts" @click="toggleMenu()" title="Podcasts Page"> Podcast </router-link>
 			</li>
     </ul>
 </template>

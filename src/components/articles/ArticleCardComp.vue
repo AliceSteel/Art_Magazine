@@ -2,6 +2,7 @@
 	<router-link
 		:to="{ name: 'ArticlePage', params: { id: article.id } }"
 		class="article"
+		title="Read more..."
 	>
 		<div class="article_pic">
 			<img :src="article.picUrl" :alt="article.title" />

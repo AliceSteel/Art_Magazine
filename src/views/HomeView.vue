@@ -15,7 +15,7 @@
 				</div>
 			</div>	
 		</div>
-		<router-link :to="{ name: 'ArticlePage', params: { id: last6Articles[4].id } }">
+		<router-link :to="{ name: 'ArticlePage', params: { id: last6Articles[4].id } }" title="Read more...">
 			<ArticleHeaderComp :article="last6Articles[4]" />
 		</router-link>
 		
@@ -27,7 +27,7 @@
 					:article="article"
 				/>
 
-				<router-link to="/magazine" class="all_others_link">
+				<router-link to="/magazine" class="all_others_link" title="Magazine Page">
 					<i>ALL ARTICLES</i>
 					<svg
 						width="24"
@@ -57,6 +57,7 @@
 					<a
 						href="https://magazinenewsstand.com/digital-magazines"
 						target="_blank"
+						title="Buy Printed Version"
 						rel="nofollow, noreferrer"
 						class="black_btn"
 					>

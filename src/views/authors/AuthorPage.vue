@@ -18,6 +18,7 @@
 								<a
 									href="https://www.instagram.com/"
 									target="_blank"
+									title="Instagram"
 									rel="nofollow, noreferrer"
 								>
 									<svg
@@ -37,6 +38,7 @@
 								<a
 									href="https://twitter.com/home"
 									target="_blank"
+									title="Twitter"
 									rel="nofollow, noreferrer"
 								>
 									<svg
@@ -56,6 +58,7 @@
 								<a
 									href="https://www.youtube.com/"
 									target="_blank"
+									title="YouTube"
 									rel="nofollow, noreferrer"
 								>
 									<svg

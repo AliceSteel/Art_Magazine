@@ -12,6 +12,7 @@
 					v-if='this.$route.name === "authors"'
 					:to="{ name: 'AuthorPage', params: { id: author.id } }"
 					class="all_others_link"
+					title="More about author"
 				>
 					<i>ABOUT</i>
 					<svg

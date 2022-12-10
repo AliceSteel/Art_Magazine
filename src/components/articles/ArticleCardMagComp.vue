@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="{name: 'ArticlePage', params: { id: article.id } }" class="article_card">
+	<router-link :to="{name: 'ArticlePage', params: { id: article.id } }" class="article_card" title="Read more..">
 		<div class="article_date">
 			<span>{{ article.date }}</span>
 			<div class="label">{{ article.label }}</div>
