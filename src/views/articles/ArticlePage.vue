@@ -6,12 +6,6 @@
             <meta property="og:title" :content="article.title">
             <meta property="og:description" :content="article.articleTextP1">
             <meta property="og:image" :content="article.picUrl">
-            <!-- Twitter -->
-            <meta property="twitter:card" :content="article.title">
-            <meta property="twitter:url" :content="'https://art-and-life.netlify.app/magazine/'+article.id">
-            <meta property="twitter:title" :content="article.title">
-            <meta property="twitter:description" :content="article.articleTextP1">
-            <meta property="twitter:image" :content="article.picUrl">
 		</AppHead>
         <ArticleHeaderComp :article='article'/>
         
