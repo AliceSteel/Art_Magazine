@@ -1,5 +1,8 @@
 <template>
 	<div class="container" v-if="asyncDataStatus_ready">
+		<AppHead>
+			<title>Fyrre Articles Magazine</title>
+		</AppHead>
 		<h1 class="magazine_h1">magazine</h1>
 		<div class="categories">
 			<h4>categories</h4>

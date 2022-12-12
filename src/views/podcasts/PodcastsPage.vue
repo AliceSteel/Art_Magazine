@@ -1,5 +1,8 @@
 <template>
-	<main class="container" v-if="asyncDataStatus_ready">
+	<div class="container" v-if="asyncDataStatus_ready">
+		<AppHead>
+			<title>Fyrre Podcasts</title>
+		</AppHead>
 		<h1>podcast</h1>
 
 		<div class="podcasts_wrap" v-if="podcasts.length">
@@ -10,7 +13,7 @@
 			/>
 		</div>
 		<div v-else class='empty_message'><h4>No podcasts available</h4></div>
-	</main>
+	</div>
 </template>
 
 <script>

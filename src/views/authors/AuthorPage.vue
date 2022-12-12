@@ -1,5 +1,8 @@
 <template>
 	<main v-if="asyncDataStatus_ready">
+		<AppHead>
+			<title>{{ author.name }}</title>
+		</AppHead>
 		<ContentPagesHeader slug="/authors" title="AUTHOR" />
 		<div class="author_content_wrap">
 			<div class="author_header">

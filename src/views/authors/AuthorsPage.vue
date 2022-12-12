@@ -1,5 +1,8 @@
 <template>
-	<main class="container" v-if="asyncDataStatus_ready">
+	<div class="container" v-if="asyncDataStatus_ready">
+		<AppHead>
+			<title>Fyrre Authors</title>
+		</AppHead>
 		<h1>authors</h1>
 
 		<div class="authors_wrap" v-if="authors.length">
@@ -10,7 +13,7 @@
 			/>
 		</div>
 		<div v-else class='empty_message'><h4>No authors information available</h4></div>
-	</main>
+	</div>
 </template>
 
 <script>

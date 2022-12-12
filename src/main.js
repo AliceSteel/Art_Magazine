@@ -4,6 +4,8 @@ import router from './router'
 import store from '@/store'
 import { initializeApp } from 'firebase/app'
 import {getFirestore} from 'firebase/firestore'
+import { createHead } from '@vueuse/head'
+
 
 import './assets/sass/index.scss';
 
@@ -24,8 +26,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const db = getFirestore(firebaseApp);
 
 const app = createApp(App)
+const head = createHead()
 
-app.use(router).use(store)
+app.use(router).use(store).use(head)
 
 const requireComponent = require.context('./components', true, /App[A-Z]\w+\.(vue|js)$/)
 requireComponent.keys().forEach(function (fileName) {

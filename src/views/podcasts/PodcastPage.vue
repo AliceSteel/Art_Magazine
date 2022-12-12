@@ -1,5 +1,8 @@
 <template>
-	<main v-if="asyncDataStatus_ready">
+	<div v-if="asyncDataStatus_ready">
+		<AppHead>
+			<title>{{ podcast.title }}</title>
+		</AppHead>
 		<ContentPagesHeader slug='/podcasts' title='PODCAST' />
 		<div class="podcast_content_wrap">
 			<div class="podcast_header">
@@ -108,7 +111,7 @@
                 />
 		</div>
         </section>  
-	</main>
+	</div>
 </template>
 
 <script>
