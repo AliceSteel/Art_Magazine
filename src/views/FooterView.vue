@@ -1,36 +1,48 @@
 <template>
 	<footer>
-		<div class="container">
-			<div class="black_bg">
-				<div class="marquee">
-					<p><i>NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++</i></p>
-				</div>
-			</div>	
+		<div class="black_bg">
+			<div class="marquee">
+				<p>
+					<i
+						>NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++
+						NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++
+						NEWSLETTER+++NEWSLETTER+++ NEWSLETTER+++ NEWSLETTER+++NEWSLETTER+++
+						NEWSLETTER+++ NEWSLETTER+++</i
+					>
+				</p>
+			</div>
 		</div>
-		<div class="container footer_wrap">
+
+		<div class="footer_wrap">
 			<div class="design_news_sign_up">
 				<h2><i>Design News to your inbox</i></h2>
-				<NewsletterForm class='footer_style'/>
+				<NewsletterForm class="footer_style" />
 			</div>
 			<nav>
 				<router-link to="/" class="logo_wrap" title="Homepage">
-						<img src="@/assets/images/logo_white.png" alt="logo" />
+					<img src="@/assets/images/logo_white.png" alt="logo" />
 				</router-link>
 				<ul class="links">
 					<li>
-						<router-link to="/magazine" title="Magazine Page"> Magazine </router-link>
+						<router-link to="/magazine" title="Magazine Page">
+							Magazine
+						</router-link>
 					</li>
 					<li>
-						<router-link to="/authors" title="Authors Page"> Authors </router-link>
+						<router-link to="/authors" title="Authors Page">
+							Authors
+						</router-link>
 					</li>
 					<li>
-						<router-link to="/podcasts" title="Podcasts Page"> Podcast </router-link>
+						<router-link to="/podcasts" title="Podcasts Page">
+							Podcast
+						</router-link>
 					</li>
 				</ul>
 			</nav>
-			
+
 			<div class="footer_rights_and_social">
-				<span> © Made by Pawel Gola - Powered by Webflow </span>
+				<span> © Made by AliceSteel - Powered by VueJS </span>
 				<ul class="links">
 					<li>
 						<a
@@ -99,25 +111,28 @@
 </template>
 
 <script>
-import NewsletterForm from '@/components/NewsletterForm.vue';
+import NewsletterForm from "@/components/NewsletterForm.vue";
 
 export default {
 	name: "FooterView",
-	components: { NewsletterForm }
+	components: { NewsletterForm },
 };
 </script>
 
 <style lang="scss" scoped>
 footer {
-	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.8);
 	color: #fff;
-	padding-bottom: 5vw;
+	padding-bottom: 4vw;
 
 	.links li a {
 		color: #fff;
 	}
 }
 .footer_wrap {
+	width: 90%;
+	max-width: 1520px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -141,7 +156,6 @@ footer {
 		flex-grow: 1;
 		font-weight: 400;
 	}
-
 }
 
 .footer_rights_and_social {
@@ -157,5 +171,4 @@ footer {
 		display: none;
 	}
 }
-
 </style>

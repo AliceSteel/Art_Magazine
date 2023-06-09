@@ -5,13 +5,17 @@
 		</router-link>
 		<ul class="links">
 			<li>
-				<router-link to="/magazine" title="Magazine Page"> Magazine </router-link>
+				<router-link to="/magazine" title="Magazine Page">
+					Magazine
+				</router-link>
 			</li>
 			<li>
 				<router-link to="/authors" title="Authors Page"> Authors </router-link>
 			</li>
 			<li>
-				<router-link to="/podcasts" title="Podcasts Page"> Podcast </router-link>
+				<router-link to="/podcasts" title="Podcasts Page">
+					Podcast
+				</router-link>
 			</li>
 			<li>
 				<a
@@ -74,43 +78,50 @@
 				</a>
 			</li>
 		</ul>
-        <nav class="burger_menu" @click="toggleMenu()">
-                <button 
-                    class="hamburger hamburger--spin" 
-                    :class="{ 'is-active': isActive }"
-                    type="button">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </button>
-        </nav>
+		<nav class="burger_menu" @click="toggleMenu()">
+			<button
+				class="hamburger hamburger--spin"
+				:class="{ 'is-active': isActive }"
+				type="button"
+			>
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
+		</nav>
 	</div>
-    <ul class="dropdown_menu" v-if="isActive">
-			<li>
-				<router-link to="/magazine" @click="toggleMenu()" title="Magazine Page"> Magazine </router-link>
-			</li>
-			<li>
-				<router-link to="/authors" @click="toggleMenu()" title="Authors Page"> Authors </router-link>
-			</li>
-			<li>
-				<router-link to="/podcasts" @click="toggleMenu()" title="Podcasts Page"> Podcast </router-link>
-			</li>
-    </ul>
+	<ul class="dropdown_menu" v-if="isActive">
+		<li>
+			<router-link to="/magazine" @click="toggleMenu()" title="Magazine Page">
+				Magazine
+			</router-link>
+		</li>
+		<li>
+			<router-link to="/authors" @click="toggleMenu()" title="Authors Page">
+				Authors
+			</router-link>
+		</li>
+		<li>
+			<router-link to="/podcasts" @click="toggleMenu()" title="Podcasts Page">
+				Podcast
+			</router-link>
+		</li>
+	</ul>
 </template>
 
 <script>
 export default {
 	name: "HeaderView",
-    data() {
-        return {
-            isActive: false
-        }
-    },
-    methods: {
-        toggleMenu(){
-            this.isActive = !this.isActive
-        }
-    }
+	data() {
+		return {
+			isActive: false,
+		};
+	},
+	methods: {
+		toggleMenu() {
+			this.isActive = !this.isActive;
+		},
+	},
 };
 </script>
 
@@ -121,6 +132,7 @@ export default {
 	position: sticky;
 	top: 0;
 	left: 0;
+	z-index: 100;
 	margin-top: 30px;
 
 	border-bottom: 1px solid #000;
@@ -133,20 +145,20 @@ export default {
 	}
 }
 .burger_menu {
-    display: none;
+	display: none;
 }
 .dropdown_menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    backdrop-filter: blur(7px);
-	transition: all .2s ease;
-    padding: 1rem;
-    border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 1rem;
+	position: fixed;
+	top: 70px;
+	right: 20px;
+	backdrop-filter: blur(7px);
+	transition: all 0.2s ease;
+	padding: 1rem;
+	border-radius: 20px;
 }
 /*!
  * Hamburgers
@@ -250,8 +262,8 @@ export default {
 	.links {
 		display: none;
 	}
-    .burger_menu {
-        display: inline-block;
-    }
+	.burger_menu {
+		display: inline-block;
+	}
 }
 </style>

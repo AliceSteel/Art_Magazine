@@ -2,23 +2,25 @@
 	<main v-if="asyncDataStatus_ready">
 		<div class="container">
 			<h1>art &amp; life</h1>
-			<div class="black_bg">
-				<div class="marquee">
-					<p>
-						<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit +++ <b>NEWS+++ </b>Lorem ipsum dolor sit
-						amet, consectetur adipiscing elit +++ <b>NEWS+++ </b>Lorem
-						ipsum dolor sit amet, consectetur adipiscing elit +++
-						<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit +++
-					</p>
-				</div>
-			</div>	
 		</div>
-		<router-link :to="{ name: 'ArticlePage', params: { id: last6Articles[4].id } }" title="Read more...">
+		<div class="black_bg">
+			<div class="marquee">
+				<p>
+					<b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit
+					+++ <b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur adipiscing
+					elit +++ <b>NEWS+++ </b>Lorem ipsum dolor sit amet, consectetur
+					adipiscing elit +++ <b>NEWS+++ </b>Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit +++
+				</p>
+			</div>
+		</div>
+		<router-link
+			:to="{ name: 'ArticlePage', params: { id: last6Articles[4].id } }"
+			title="Read more..."
+		>
 			<ArticleHeaderComp :article="last6Articles[4]" />
 		</router-link>
-		
+
 		<section class="container homepage_articles">
 			<div class="articles" v-if="last6Articles">
 				<ArticleCardComp
@@ -27,7 +29,11 @@
 					:article="article"
 				/>
 
-				<router-link to="/magazine" class="all_others_link" title="Magazine Page">
+				<router-link
+					to="/magazine"
+					class="all_others_link"
+					title="Magazine Page"
+				>
 					<i>ALL ARTICLES</i>
 					<svg
 						width="24"
@@ -154,12 +160,12 @@ export default {
 	computed: {
 		last6Articles() {
 			let articles = this.$store.state.magazine;
-			return articles.slice((articles.length - 6), (articles.length));
+			return articles.slice(articles.length - 6, articles.length);
 		},
 
 		last3Podcasts() {
 			let podcasts = this.$store.state.podcasts;
-			return podcasts.slice((podcasts.length - 3), (podcasts.length))
+			return podcasts.slice(podcasts.length - 3, podcasts.length);
 		},
 		first6Authors() {
 			return this.$store.state.authors.slice(0, 6);
@@ -185,7 +191,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 section.homepage_articles {
 	display: flex;
 	flex-wrap: wrap;
