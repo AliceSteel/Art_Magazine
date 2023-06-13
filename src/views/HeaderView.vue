@@ -155,6 +155,7 @@ export default {
 	position: fixed;
 	top: 70px;
 	right: 20px;
+	z-index: 100;
 	backdrop-filter: blur(7px);
 	transition: all 0.2s ease;
 	padding: 1rem;
