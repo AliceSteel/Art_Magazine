@@ -191,6 +191,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
+	--s: 80px; /* control the size */
+	--c: #fff;
+
+	--_g: #0000 calc(-650% / 13) calc(50% / 13), var(--c) 0 calc(100% / 13),
+		#0000 0 calc(150% / 13), var(--c) 0 calc(200% / 13), #0000 0 calc(250% / 13),
+		var(--c) 0 calc(300% / 13);
+	--_g0: repeating-linear-gradient(45deg, var(--_g));
+	--_g1: repeating-linear-gradient(-45deg, var(--_g));
+	background: var(--_g0), var(--_g0) var(--s) var(--s), var(--_g1),
+		var(--_g1) var(--s) var(--s) #27b8b8;
+	background-size: calc(2 * var(--s)) calc(2 * var(--s));
+}
 section.homepage_articles {
 	display: flex;
 	flex-wrap: wrap;
@@ -241,7 +254,7 @@ section.homepage_articles {
 .authors_wrap {
 	display: flex;
 	flex-wrap: wrap;
-	margin-bottom: 12vw;
+	padding-bottom: 10vw;
 }
 /* ======================================================== */
 @media screen and (max-width: 1066px) {
