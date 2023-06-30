@@ -25,6 +25,7 @@ export default {
 		return {
 			/*API_BOT_ID: "5430381288:AAE_eQ93YVTYwbmZ8s_uAyzqmgqXbPnE_Fk",*/
 			API_BOT_ID: "5142c8e60ea7de80-95d4025c3024e7e2-9b203e163d25aac2",
+			URL: "https://chatapi.viber.com/pa/set_webhook",
 			/*CHAT_ID: "-1001772014948",*/
 			email: "",
 			errors: null,
@@ -52,14 +53,16 @@ export default {
 					"%0a<b>Email: </b>" +
 					this.email;*/
 				fetch(
-					`https://chatapi.viber.com/pa/set_webhook
-					X-Viber-Auth-Token:${this.API_BOT_ID}
-					Content-Type:application/json
-          {
-            "url":"https://art-and-life.netlify.app"
-            
-          }
-          `
+					this.URL,
+					{
+						headers: {
+							"X-Viber-Auth-Token":
+								"5142c8e60ea7de80-95d4025c3024e7e2-9b203e163d25aac2",
+							"Content-Type": "application/json",
+						},
+						body: { url: "https://art-and-life.netlify.app" },
+					}
+
 					/*`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`*/
 				)
 					.then((resp) => {
