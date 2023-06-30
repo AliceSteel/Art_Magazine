@@ -54,15 +54,14 @@ export default {
 				fetch(
 					`https://chatapi.viber.com/pa/set_webhook`,
 					{
-						headers: {
-							"Content-Type": "application/json",
-							"X-Viber-Auth-Token":
-								"5142c8e60ea7de80-95d4025c3024e7e2-9b203e163d25aac2",
-						},
-						body: {
-							url: "https://art-and-life.netlify.app/",
-						},
+						"Content-Type": "application/json",
+						"X-Viber-Auth-Token":
+							"5142c8e60ea7de80-95d4025c3024e7e2-9b203e163d25aac2",
+					},
+					{
+						url: "https://art-and-life.netlify.app/",
 					}
+
 					/*`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`*/
 				)
 					.then((resp) => {
