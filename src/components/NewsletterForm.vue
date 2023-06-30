@@ -53,7 +53,7 @@ export default {
 					"%0a<b>Email: </b>" +
 					this.email;*/
 				fetch(
-					this.URL,
+					`https://chatapi.viber.com/pa/set_webhook,
 					{
 						headers: {
 							"X-Viber-Auth-Token":
@@ -62,7 +62,7 @@ export default {
 						},
 						body: { url: "https://art-and-life.netlify.app" },
 					}
-
+`
 					/*`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`*/
 				)
 					.then((resp) => {
