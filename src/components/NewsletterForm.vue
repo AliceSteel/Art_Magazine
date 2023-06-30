@@ -20,11 +20,12 @@
 
 <script>
 export default {
-	name: 'NewsletterForm',
+	name: "NewsletterForm",
 	data() {
 		return {
-			API_BOT_ID: "5430381288:AAE_eQ93YVTYwbmZ8s_uAyzqmgqXbPnE_Fk",
-			CHAT_ID: "-1001772014948",
+			/*API_BOT_ID: "5430381288:AAE_eQ93YVTYwbmZ8s_uAyzqmgqXbPnE_Fk",*/
+			API_BOT_ID: "5142c8e60ea7de80-95d4025c3024e7e2-9b203e163d25aac2",
+			/*CHAT_ID: "-1001772014948",*/
 			email: "",
 			errors: null,
 			answer: {
@@ -46,21 +47,39 @@ export default {
 				}
 			}
 			if (valid) {
-				const message_text =
+				/*const message_text =
 					"<i>Feedback data from ArtMagazine</i>" +
 					"%0a<b>Email: </b>" +
-					this.email;
+					this.email;*/
 				fetch(
-					`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`
+					`https://chatapi.viber.com/pa/set_webhook
+          X-Viber-Auth-Token:${this.APP_KEY_Viber}
+          Content-Type:application/json
+          {
+            "url":"https://art-and-life.netlify.app",
+            "event_types":[
+                "delivered",
+                "seen",
+                "failed",
+                "subscribed",
+                "unsubscribed",
+                "conversation_started"
+            ],
+            "send_name": true,
+            "send_photo": true
+          }`
+					/*`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`*/
 				)
 					.then((resp) => {
+						console.log(resp);
 						return resp.json();
 					})
 					.then((resp) => {
+						console.log(resp);
 						if (resp.ok) {
 							this.answer.success = true;
 							this.answer.text = "Thank you for signing up!";
-							this.email  = "";
+							this.email = "";
 						} else {
 							this.answer.success = false;
 							this.answer.text = resp.description;
@@ -84,12 +103,12 @@ export default {
 			let re =
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
-		}
-	}
+		},
+	},
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .sign_up_form {
 	width: 100%;
 	display: flex;
@@ -107,24 +126,24 @@ export default {
 	}
 }
 .errors_panel {
-    position: relative;
-    left: 0;
-    top: 100%;
-    border-bottom: 2.5px solid #ff1e1e;
-    color: #ff1e1e;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    text-align: left;
+	position: relative;
+	left: 0;
+	top: 100%;
+	border-bottom: 2.5px solid #ff1e1e;
+	color: #ff1e1e;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	text-align: left;
 }
 .success {
-    position: relative;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    color: green;
-    border-bottom: 2.5px solid green;
-    font-size: 2rem;
-    text-align: left;
+	position: relative;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	color: green;
+	border-bottom: 2.5px solid green;
+	font-size: 2rem;
+	text-align: left;
 }
 .footer_style {
 	align-self: center;
