@@ -53,20 +53,11 @@ export default {
 					this.email;*/
 				fetch(
 					`https://chatapi.viber.com/pa/set_webhook
-          X-Viber-Auth-Token:${this.APP_KEY_Viber}
+          X-Viber-Auth-Token:${this.API_BOT_ID}
           Content-Type:application/json
           {
             "url":"https://art-and-life.netlify.app",
-            "event_types":[
-                "delivered",
-                "seen",
-                "failed",
-                "subscribed",
-                "unsubscribed",
-                "conversation_started"
-            ],
-            "send_name": true,
-            "send_photo": true
+            
           }`
 					/*`https://api.telegram.org/bot${this.API_BOT_ID}/sendMessage?chat_id=${this.CHAT_ID}&text=${message_text}&parse_mode=HTML`*/
 				)
